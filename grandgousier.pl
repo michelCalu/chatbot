@@ -30,7 +30,7 @@ produire_reponse(L,[L1,L2, L3]) :-
    L2 = [les, etudiants, vont, m, '\'', aider, '.' ],
    L3 = ['vous le verrez !'].
 
-%test 1
+
 
 /* --------------------------------------------------------------------- */
 /*                                                                       */
@@ -43,7 +43,7 @@ produire_reponse(L,[L1,L2, L3]) :-
 
 lire_question(LMots) :- read_atomics(LMots).
 
-%test2
+
 
 /*****************************************************************************/
 % my_char_type(+Char,?Type)
@@ -312,5 +312,3 @@ grandgousier :-
 /* --------------------------------------------------------------------- */
 
 :- grandgousier.
-
-%test3
