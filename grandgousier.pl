@@ -43,7 +43,7 @@ produire_reponse(L,[L1,L2, L3]) :-
 
 lire_question(LMots) :- read_atomics(LMots).
 
-
+%test edit from github editor
 
 /*****************************************************************************/
 % my_char_type(+Char,?Type)
