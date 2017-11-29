@@ -25,6 +25,9 @@
 produire_reponse([fin],[L1]) :-
    L1 = [merci, de, m, '\'', avoir, consulte], !.
 
+produire_reponse([bonjour],[L1]) :-
+      L1 = [bonjour a toi'!'], !.
+
 produire_reponse(L,[L1,L2, L3]) :-
    L1 = [je, ne, sais, pas, '.'],
    L2 = [les, etudiants, vont, m, '\'', aider, '.' ],
