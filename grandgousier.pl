@@ -18,21 +18,67 @@
 /*        cet enonce et ce squelette de solution !                       */
 /*                                                                       */
 /* --------------------------------------------------------------------- */
-
+:- style_check(-singleton).
+:- [mclefs].
+:- use_module(library(random)).
 
 /*                      !!!    A MODIFIER   !!!                          */
+
 
 produire_reponse([fin],[L1]) :-
    L1 = [merci, de, m, '\'', avoir, consulte], !.
 
 produire_reponse([bonjour],[L1]) :-
-      L1 = [bonjour a toi'!'], !.
+      L1 = [bonjour,'!'], !.
 
 produire_reponse(L,[L1,L2, L3]) :-
    L1 = [je, ne, sais, pas, '.'],
    L2 = [les, etudiants, vont, m, '\'', aider, '.' ],
    L3 = ['vous le verrez !'].
 
+
+produire_reponse([bordeaux,5],[
+        	[1,[_,bordeaux,_],0,
+        		[je,vous,conseille,un,saint,emilion],
+        		[vous,cherchez,un,bordeaux,?]
+            ]]).
+
+
+
+/**********************************************************/
+% match(Input, Pattern)
+%     matches Input with a Pattern
+%     if pattern contains a Variable, Variable will hold matching words
+%     ex: match([a,b,c,d,e], [a,X,e]).
+/**********************************************************/
+match([], []):-!.
+
+match(Input, [Pattern]) :-
+    %var(Pattern),
+    is_list(Input),
+    is_list(Pattern),
+    !,
+    Pattern = Input.
+
+match(InputWords, [Var,NextWord|Rest]) :-
+    var(Var),
+    nonvar(NextWord),
+    is_list(InputWords),
+    is_list(Rest),
+    !,
+    group(Var,InputWords,NextWord,RestInputWords),
+    match(RestInputWords, [NextWord|Rest]).
+
+match([NextInputWord|RestInput], [NextInputWord|RestPattern]) :-
+      !,
+      match(RestInput, RestPattern).
+
+group([], [Nextw|Rest], Nextw, [Nextw|Rest] ):-
+    !.
+group([H|T],[H|Tinput],Nextw,Rest):-
+    H\=Nextw,
+    !,
+    group(T,Tinput,Nextw,Rest).
 
 
 /* --------------------------------------------------------------------- */
@@ -45,8 +91,6 @@ produire_reponse(L,[L1,L2, L3]) :-
 % lire_question(L_Mots)
 
 lire_question(LMots) :- read_atomics(LMots).
-
-
 
 /*****************************************************************************/
 % my_char_type(+Char,?Type)
@@ -64,7 +108,6 @@ my_char_type(X,punctuation) :- X >= 91, X =< 96, !.
 my_char_type(X,punctuation) :- X >= 123, X =< 126, !.
 my_char_type(_,special).
 
-
 /*****************************************************************************/
 % lower_case(+C,?L)
 %   If ASCII code C is an upper-case letter, then L is the
@@ -76,7 +119,6 @@ lower_case(X,Y) :-
 	Y is X + 32, !.
 
 lower_case(X,X).
-
 
 /*****************************************************************************/
 % read_lc_string(-String)
