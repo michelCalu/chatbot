@@ -31,19 +31,55 @@ produire_reponse([fin],[L1]) :-
 produire_reponse([bonjour],[L1]) :-
       L1 = [bonjour,'!'], !.
 
-produire_reponse(L,[L1,L2, L3]) :-
-   L1 = [je, ne, sais, pas, '.'],
-   L2 = [les, etudiants, vont, m, '\'', aider, '.' ],
-   L3 = ['vous le verrez !'].
 
+produire_reponse(Q,Rep) :-
+         trouver_motcle(Q,MotsCle),
+         trier_motcle(MotsCle, TriMotsCle),
+         !,
+         lister_regles(TriMotsCle,ReglesApplicables),
+         %match(Q,ReglesApplicables),
+         sel_reponse(ReglesApplicables,Rep).
 
-produire_reponse([bordeaux,5],[
-        	[1,[_,bordeaux,_],0,
-        		[je,vous,conseille,un,saint,emilion],
-        		[vous,cherchez,un,bordeaux,?]
-            ]]).
+/***************************************************************************/
+% trouver_motcle(Input, ListeDeMotsClé)
+%     récupère les [motclé,Poids] présents dans Input
 
+trouver_motcle([],[]).
+trouver_motcle([H|T],[[H,P]|R]):-
+            mclef([H,P]),
+            trouver_motcle(T,R).
+trouver_motcle([H|T],R):-
+            trouver_motcle(T,R).
+trouver_motcle([L],[notfound]):-
+            length(L)==1,
+            not(mclef(L)).
 
+/***************************************************************************/
+% trier_motcle(Liste, ListeTriée)
+%     trie une liste de mots-clé par poids
+
+trier_motcle([],[]).
+
+trier_motcle(L,Res):-
+    sort(2,@<,L,Res).
+/**************************************************************************/
+% lister_regles(LmotsTriés, RèglesApplicables)
+%     ajoute dans RèglesApplicables toutes les règles contenant un mot
+%     de LmotsTriés en index
+
+lister_regles([[M|_]|Rest], [[ID,Regle,Count,Reponse]|T]):-
+      % match([Input],[Regle]),
+       regle([M,_],[[ID,Regle,Count,Reponse]]),
+       lister_regles(Rest,T).
+
+lister_regles([], [[ID,Regle,Count,Reponse]|T]):-
+       regle([],[[ID,Regle,Count,Reponse]]).
+
+/**************************************************************************/
+      % sel_reponse(ListeDereponsesApplicables, Reponse)
+
+sel_reponse([[IDpattern,Pattern,Count,Reponse]|T], [Reponse]):-!,
+      Count==0.
 
 /**********************************************************/
 % match(Input, Pattern)
@@ -54,18 +90,16 @@ produire_reponse([bordeaux,5],[
 match([], []):-!.
 
 match(Input, [Pattern]) :-
-    %var(Pattern),
     is_list(Input),
-    is_list(Pattern),
+    var(Pattern),
     !,
     Pattern = Input.
 
 match(InputWords, [Var,NextWord|Rest]) :-
-    var(Var),
-    nonvar(NextWord),
     is_list(InputWords),
-    is_list(Rest),
+    var(Var),
     !,
+    nonvar(NextWord),
     group(Var,InputWords,NextWord,RestInputWords),
     match(RestInputWords, [NextWord|Rest]).
 
