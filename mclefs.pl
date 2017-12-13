@@ -6,8 +6,14 @@ mclef([bordeaux,5]).
 mclef([rouge,3]).
 mclef([promotion,1]).
 
+
+remplace(vins,vin).
+remplace(vni,vin).
+
+
 regle([bordeaux,5],[
         	[1, [quel,bordeaux,conseillez,vous], 0, [je,vous,conseille,un,saint,emilion] ]
+            [2, [quel,bordeaux,conseillez,vous], 0, [je,vous,conseille,un,saint,emilion] ],
             ]).
 regle([rouge,5],[
         	[1, [quel,vin,rouge,avez,vous], 0, [je,vous,conseille,un,beaujolais] ]
