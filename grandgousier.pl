@@ -16,7 +16,7 @@
 
 
 produire_reponse(Q,Reponse) :-
-         trouver_motcle(Q,MotsCle),
+         trouver_motcle(Q,MotsCle, 0),
          trier_motcle(MotsCle, TriMotsCle),
          !,
          lister_regles(TriMotsCle,ReglesApplicables, Q),
@@ -25,14 +25,21 @@ produire_reponse(Q,Reponse) :-
 /***************************************************************************/
 % trouver_motcle(Input, ListeDeMotsClé)
 %     récupère les [motclé,Poids] présents dans Input
+%     in: {mots d'Input}
+%     out: {[motclé1, poids1], [motclé2,poids2],...}
+%           ou {[unknown,99]} si pas de motclé
 %
-trouver_motcle([],[[notfound,99]]).
-trouver_motcle([H|T],[[H,P]|R]):-
+trouver_motcle([],[], 1).
+
+trouver_motcle([],[[notfound,99]], 0).
+
+trouver_motcle([H|T],[[H,P]|R], Nb):-
             mclef(H,P),
-            trouver_motcle(T,R).
-trouver_motcle([H|T],R):-
+            NewNb is Nb + 1,
+            trouver_motcle(T,R, NewNb).
+trouver_motcle([H|T],R, Nb):-
             not(mclef(H,_)),
-            trouver_motcle(T,R).
+            trouver_motcle(T,R, Nb).
 
 /***************************************************************************/
 % trier_motcle(Liste, ListeTriée)
