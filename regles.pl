@@ -1,30 +1,21 @@
 /***********************************************/
 % pattern de génération de réponse
 %
-regle([bordeaux,5],[
-        	[1, [quel,bordeaux,conseillez,vous], 0, [je,vous,conseille,un,saint,emilion] ],
-            [2, [quel,est,le,meilleur,bordeaux], 0, [un,saint,emilion] ]
-            ]).
-regle([rouge,5],[
-        	[1, [quel,vin,rouge,avez,vous], 0, [nous,avons,un,beaujolais] ]
-            ]).
-regle([promotion,5],[
-        	[1, [quel,vin,est,en,promotion], 0, [il,n,y,a,pas,de,promotion,en,ce,moment,!] ]
-            ]).
-regle([],[
-            [1, [X], 0, [je,ne,peux,pas,repondre,a,cette,question] ]
-            ]).
+
+regle([bouche,5],[
+        	[1, [que, donne, le, X, en, bouche],0 , Reponse ]
+                 ]):- nom(ID, X),
+                      bouche(ID,Reponse).
+
+regle([bonjour,1],[
+      	[1, X, 0 , Reponse ]
+               ]):- salutation(X,Reponse).
 
 
-% ----------------------------------------------------------------%
-% Règles de réproduire_reponse
-%
-%
-regle_rep(bouche,1,
-  [ que, donne, le, Vin, en, bouche ],
-  Rep ) :-
+regle([notfound,99],[
+            [1, [X], 0, Reponse ]
+            ]):- notfound(X,Reponse).
 
-     bouche(Vin,Rep).
 
 % ----------------------------------------------------------------%
 % Règles de réproduire_reponse

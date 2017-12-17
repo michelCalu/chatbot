@@ -1,3 +1,8 @@
+:- style_check(-singleton).
+:- [mclefs].
+:- [regles].
+:- [conversion_util].
+
 /* --------------------------------------------------------------------- */
 /*                                                                       */
 /*        PRODUIRE_REPONSE(L_Mots,L_Lignes_reponse) :                    */
@@ -7,63 +12,33 @@
 /*        Output : une liste de liste de lignes correspondant a la       */
 /*                 reponse fournie par le bot                            */
 /*                                                                       */
-/*        NB Pour l'instant le predicat retourne dans tous les cas       */
-/*            [  [je, ne, sais, pas, '.'],                               */
-/*               [les, etudiants, vont, m, '\'', aider, '.'],            */
-/*               ['vous le verrez !']                                    */
-/*            ]                                                          */
-/*                                                                       */
-/*        Je ne doute pas que ce sera le cas ! Et vous souhaite autant   */
-/*        d'amusement a coder le predicat que j'ai eu a ecrire           */
-/*        cet enonce et ce squelette de solution !                       */
-/*                                                                       */
 /* --------------------------------------------------------------------- */
-:- style_check(-singleton).
-:- [mclefs].
-:- [regles].
-:- [conversion_util].
-:- use_module(library(random)).
 
 
-/*                      !!!    A MODIFIER   !!!                          */
-
-
-produire_reponse([fin],[L1]) :-
-   L1 = [merci, de, m, '\'', avoir, consulte], !.
-
-produire_reponse([bonjour],[L1]) :-
-      L1 = [bonjour,'!'], !.
-
-
-produire_reponse(Q,Rep) :-
+produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle),
          trier_motcle(MotsCle, TriMotsCle),
          !,
-         lister_regles(TriMotsCle,ReglesApplicables),
-         %match(Q,ReglesApplicables),
-         sel_reponse(ReglesApplicables,Rep).
+         lister_regles(TriMotsCle,ReglesApplicables, Q),
+         select_reponse(ReglesApplicables, Reponse).
 
 /***************************************************************************/
 % trouver_motcle(Input, ListeDeMotsClé)
 %     récupère les [motclé,Poids] présents dans Input
 %
-trouver_motcle([],[]).
+trouver_motcle([],[[notfound,99]]).
 trouver_motcle([H|T],[[H,P]|R]):-
-            mclef([H,P]),!,
+            mclef(H,P),
             trouver_motcle(T,R).
 trouver_motcle([H|T],R):-
-            not(mclef(H)),
+            not(mclef(H,_)),
             trouver_motcle(T,R).
-trouver_motcle([L],[notfound]):-
-            length(L)==1,
-            not(mclef(L)).
 
 /***************************************************************************/
 % trier_motcle(Liste, ListeTriée)
 %     trie une liste de mots-clé par poids
 %
 trier_motcle([],[]).
-
 trier_motcle(L,Res):-
     sort(2,@<,L,Res).
 
@@ -72,19 +47,23 @@ trier_motcle(L,Res):-
 %     ajoute dans RèglesApplicables toutes les règles contenant un mot
 %     de LmotsTriés en index
 %
-lister_regles([[M|_]|Rest], [[ID,Regle,Count,Reponse]|T]):-
-      % match([Input],[Regle]),
-       regle([M,_],[[ID,Regle,Count,Reponse]]),
-       lister_regles(Rest,T).
+lister_regles([[notfound,99]], [[ID,Pattern,Count,Reponse]|T], Question):-
+       regle([notfound,99],[[ID,Pattern,Count,Reponse]]).
 
-lister_regles([], [[ID,Regle,Count,Reponse]|T]):-
-       regle([],[[ID,Regle,Count,Reponse]]).
+lister_regles([[M,_]|Rest], [[ID,Pattern,Count,Reponse]|T], Question):-
+       regle([M,_],[[ID,Pattern,Count,Reponse]]),
+       flatten(Pattern, Regle2),
+       match(Question,Regle2),
+       lister_regles(Rest,T, Question).
 
-/**************************************************************************/
-% sel_reponse(ListeDereponsesApplicables, Reponse)
-%
-sel_reponse([[IDpattern,Pattern,Count,Reponse]|T], [Reponse]):-!,
-      Count==0.
+lister_regles([], [], Question).
+
+
+select_reponse([[ID, Pattern, Count, Reponse]|Regles], Reponse).
+
+
+
+
 
 /**********************************************************/
 % match(Input, Pattern)
@@ -175,4 +154,4 @@ grandgousier :-
 /*                                                                       */
 /* --------------------------------------------------------------------- */
 
-:- grandgousier.
+%     :- grandgousier.        === program start ==
