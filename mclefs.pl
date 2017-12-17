@@ -11,9 +11,11 @@
 % transformations fautes d'orthographe, typo, pluriel...
 remplace(vins,vin).
 remplace(vni,vin).
-
+% TO DO
+%************************************************/
 
 % Mots-cle:
+% 1 seul motclef(mot, poids) par mot à reconnaitre
 
 mclef(bouche,10).
 mclef(bonjour,1).
