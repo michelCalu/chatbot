@@ -1,9 +1,30 @@
+:- multifile regle/2.
+
 % questions bouche
 %
 % Que donne le [vin] en bouche ?
 % Comment est le [vin] en bouche ?
 % Comment est l’attaque du [vin] ?
 % Parlez-moi de la longueur du [vin] ?
+
+regle([bouche,5],[
+        	[1, [que, donne, le, X, en, bouche],0 , Reponse ]
+                 ]):- nom(ID, X),
+                      bouche(ID,Reponse).
+regle([bouche,5],[
+      	[1, [comment, est, le, X, en, bouche],0 , Reponse ]
+               ]):- nom(ID, X),
+                    bouche(ID,Reponse).
+
+regle([bouche,5],[
+      	[1, [comment, est, l, attaque, du, X ],0 , Reponse ]
+               ]):- nom(ID, X),
+                    bouche(ID,Reponse).
+
+regle([bouche,5],[
+      	[1, [parlez, moi, de, la, longueur, du, X],0 , Reponse ]
+               ]):- nom(ID, X),
+                    bouche(ID,Reponse).
 
 % questions nez
 %

@@ -1,15 +1,8 @@
+:- multifile regle/2.
+
 /***********************************************/
 % pattern de génération de réponse
 %
-
-regle([bouche,5],[
-        	[1, [que, donne, le, X, en, bouche],0 , Reponse ]
-                 ]):- nom(ID, X),
-                      bouche(ID,Reponse).
-regle([bouche,5],[
-      	[1, [comment,est, le, X, en, bouche],0 , Reponse ]
-               ]):- nom(ID, X),
-                    bouche(ID,Reponse).
 
 regle([bonjour,1],[
       	[1, X, 0 , Reponse ]

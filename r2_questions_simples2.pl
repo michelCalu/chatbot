@@ -1,3 +1,5 @@
+:- multifile regle/2.
+
 % questions région
 %
 % Que recouvre l’appellation [région] ?
