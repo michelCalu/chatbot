@@ -21,6 +21,7 @@ mclef(bouche,10).
 mclef(lattaque,10).
 mclef(longueur,10).
 mclef(bonjour,1).
+mclef(fin,1).
 
 nom(beaumes_de_venise_2015,[beaumes,de,venise]).
 
@@ -36,9 +37,6 @@ bouche(beaumes_de_venise_2015,
     [ 'blablablaaaaa blablablaaaaa' ],
     [ 'blablablaaaaa.' ]
   ]).
-
-
-salutation(bonjour, [['bonjour a vous']]).
 
 
 nom(beaujolais_nouveau,[beaujolais,nouveau]).
