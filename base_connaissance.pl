@@ -18,6 +18,8 @@ remplace(vni,vin).
 % 1 seul motclef(mot, poids) par mot à reconnaitre
 
 mclef(bouche,10).
+mclef(lattaque,10).
+mclef(longueur,10).
 mclef(bonjour,1).
 
 nom(beaumes_de_venise_2015,[beaumes,de,venise]).

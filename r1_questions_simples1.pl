@@ -16,13 +16,13 @@ regle([bouche,5],[
                ]):- nom(ID, X),
                     bouche(ID,Reponse).
 
-regle([bouche,5],[
-      	[1, [comment, est, l, attaque, du, X ],0 , Reponse ]
+regle([lattaque,5],[
+      	[1, [comment, est, lattaque, du, X],0 , Reponse ]
                ]):- nom(ID, X),
                     bouche(ID,Reponse).
 
-regle([bouche,5],[
-      	[1, [parlez, moi, de, la, longueur, du, X],0 , Reponse ]
+regle([longueur,5],[
+      	[1, [parlezmoi, de, la, longueur, du, X],0 , Reponse ]
                ]):- nom(ID, X),
                     bouche(ID,Reponse).
 
