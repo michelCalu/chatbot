@@ -21,8 +21,8 @@ produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle, 0),
          trier_motcle(MotsCle, TriMotsCle),
          !,
-         lister_regles(TriMotsCle,ReglesApplicables, Q),
-         select_reponse(ReglesApplicables, Reponse).
+         lister_regles(TriMotsCle,ReglesApplicables, Q, Reponse).
+
 
 /***************************************************************************/
 % trouver_motcle(Input, ListeDeMotsClé)
@@ -56,19 +56,19 @@ trier_motcle(L,Res):-
 %     ajoute dans RèglesApplicables toutes les règles contenant un mot
 %     de LmotsTriés en index
 %
-lister_regles([[notfound,99]], [[ID,Pattern,Count,Reponse]|T], Question):-
+lister_regles([[notfound,99]], [[ID,Pattern,Count,Reponse]|T], Question, Reponse):-
        regle([notfound,99],[[ID,Pattern,Count,Reponse]]).
 
-lister_regles([[M,_]|Rest], [[ID,Pattern,Count,Reponse]|T], Question):-
+lister_regles([[M,_]|Rest], [[ID,Pattern,Count,Reponse]|T], Question, Reponse):-
        regle([M,_],[[ID,Pattern,Count,Reponse]]),
        flatten(Pattern, Regle2),
        match(Question,Regle2),
-       lister_regles(Rest,T, Question).
+       lister_regles(Rest,T, Question, Reponse).
 
-lister_regles([], [], Question).
+lister_regles([], [], Question, Reponse).
 
 
-select_reponse([[ID, Pattern, Count, Reponse]|Regles], Reponse).
+
 
 
 

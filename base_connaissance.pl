@@ -16,27 +16,56 @@ remplace(vni,vin).
 
 % Mots-cle:
 % 1 seul motclef(mot, poids) par mot à reconnaitre
-
-mclef(bouche,10).
-mclef(lattaque,10).
-mclef(longueur,10).
 mclef(bonjour,1).
 mclef(fin,1).
 
-nom(beaumes_de_venise_2015,[beaumes,de,venise]).
+%bouche
+mclef(bouche,10).
+mclef(attaque,10).
+mclef(longueur,10).
+
+%nez
+mclef(nez,10).
+mclef(aromes,10).
+mclef(bouquet,10).
+mclef(olfactives,10).
+
+% questions région
+mclef(appellation,10).
+mclef(region,9).
+mclef(provient,8).
+mclef(origine,7).
+
+% question prix
+mclef(prix,10).
+mclef(coute,10).
+mclef(acheter,10).
+
+%description (motcle[#parler, #decrivez, #presentez, #dire])
+mclef(parler,10).
+mclef(decrivez,10).
+mclef(presentez,10).
+mclef(dire,10).
+
+mclef(conseillez,10).
+mclef(avez,10).
+mclef(auriez,10).
+mclef(conseiller,10).
+
+mclef(entre,10).
+mclef(plus,10).
+mclef(moins,10).
 
 
-notfound(X,
-         [ [ 'je n ai pas la reponse' ],
-    [ 'a cette question' ]
+
+
+notfound(X,[
+      [ 'je n ai pas la reponse' ],
+      [ 'a cette question' ]
   ]).
 
 
-bouche(beaumes_de_venise_2015,
-  [ [ 'blablabl  aaaiiiiiiaa' ],
-    [ 'blablablaaaaa blablablaaaaa' ],
-    [ 'blablablaaaaa.' ]
-  ]).
+
 
 
 nom(beaujolais_nouveau,[beaujolais,nouveau]).
@@ -44,10 +73,11 @@ nom(chiroubles,[chiroubles]).
 nom(saint_amour,[saint,amour]).
 nom(florilege_pauillac,[florilege,pauillac]).
 
-region(beaujolais_nouveau,beaujolais).
+
+region(beaujolais_nouveau, beaujolais).
 region(chiroubles,beaujolais).
 region(saint_amour,beaujolais).
-region(florilege_pauillac,bordeaux).
+region(florilege_pauillac,beaujolais).
 
 annee(beaujolais_nouveau,2013).
 annee(chiroubles,2013).
@@ -107,3 +137,9 @@ bouche(beaujolais_nouveau,[['l attaque est souple et juteuse, la suite dense, ra
 bouche(chiroubles,[['cette sensation fruitee se poursuit en bouche avec'],['une nuance florale et minerale.']]).
 bouche(saint_amour,[['l ensemble est gourmand, alliant merveilleusement'],['fruit, rondeur et fraicheur.']]).
 bouche(florilege_pauillac,[['inevitablement, la bouche est puissante, mais les'],['tannins sont elegants et bien enrobes.']]).
+
+bouche(unknown,
+   [ [ 'je n ai pas compris.' ],
+   [ 'vin en bouche' ],
+   [ 'vous donne l attaque de n importe quel vin .' ]
+   ]).
