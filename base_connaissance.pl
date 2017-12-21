@@ -72,12 +72,21 @@ nom(beaujolais_nouveau,[beaujolais,nouveau]).
 nom(chiroubles,[chiroubles]).
 nom(saint_amour,[saint,amour]).
 nom(florilege_pauillac,[florilege,pauillac]).
+nom(vin_1,[vin, 1]).
+nom(vin_2,[vin, 2]).
+nom(vin_3,[vin, 3]).
+nom(vinabc,[vin, abc]).
+
 
 
 region(beaujolais_nouveau, beaujolais).
-region(chiroubles,beaujolais).
-region(saint_amour,beaujolais).
-region(florilege_pauillac,beaujolais).
+region(chiroubles,bordeaux).
+region(saint_amour,bordeaux).
+region(florilege_pauillac,ventoux).
+region(vinabc,moselle).
+region(vin_1,region1).
+region(vin_2,region2).
+region(vin_3,region3).
 
 annee(beaujolais_nouveau,2013).
 annee(chiroubles,2013).

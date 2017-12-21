@@ -8,6 +8,11 @@
 % Parlez-moi de la longueur du [vin] ?    OK
 
 regle([bouche,5],[
+        	[1, [bouche,X],0 , Reponse ]
+                 ]):- nom(ID, X),
+                      bouche(ID,Reponse).
+
+regle([bouche,5],[
         	[1, [Y, le, X, en, bouche],0 , Reponse ]
                  ]):- nom(ID, X),
                       bouche(ID,Reponse).

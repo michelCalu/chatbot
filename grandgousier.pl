@@ -21,7 +21,7 @@ produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle, 0),
          trier_motcle(MotsCle, TriMotsCle),
          !,
-         lister_regles(TriMotsCle,ReglesApplicables, Q, Reponse).
+         lister_regles(TriMotsCle, Q, Reponse).
 
 
 /***************************************************************************/
@@ -56,16 +56,16 @@ trier_motcle(L,Res):-
 %     ajoute dans RèglesApplicables toutes les règles contenant un mot
 %     de LmotsTriés en index
 %
-lister_regles([[notfound,99]], [[ID,Pattern,Count,Reponse]|T], Question, Reponse):-
+lister_regles([[notfound,99]], Question, Reponse):-
        regle([notfound,99],[[ID,Pattern,Count,Reponse]]).
 
-lister_regles([[M,_]|Rest], [[ID,Pattern,Count,Reponse]|T], Question, Reponse):-
+lister_regles([[M,_]|Rest],  Question, Reponse):-
        regle([M,_],[[ID,Pattern,Count,Reponse]]),
        flatten(Pattern, Regle2),
        match(Question,Regle2),
-       lister_regles(Rest,T, Question, Reponse).
+       lister_regles(Rest, Question, Reponse).
 
-lister_regles([], [], Question, Reponse).
+lister_regles([], Question, Reponse).
 
 
 
@@ -114,6 +114,7 @@ group([H|T],[H|Tinput],Nextw,Rest):-
 /*****************************************************************************/
 % nom_vins_uniforme( [liste mots], [liste unifiee])
 %
+/*
 nom_vins_uniforme(Lmots,L_mots_unif) :-
       L1 = Lmots,
       replace_vin([beaumes,de,venise,2015],beaumes_de_venise_2015,L1,L2),
@@ -125,7 +126,7 @@ replace_vin(L,X,In,Out) :-
 replace_vin(_,_,[],[]) :- !.
 replace_vin(L,X,[H|In],[H|Out]) :-
       replace_vin(L,X,In,Out).
-
+*/
 
 /* --------------------------------------------------------------------- */
 /*                                                                       */
