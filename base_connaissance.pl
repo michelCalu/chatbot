@@ -17,7 +17,7 @@ remplace(vni,vin).
 % Mots-cle:
 % 1 seul motclef(mot, poids) par mot à reconnaitre
 mclef(bonjour,1).
-mclef(fin,1).
+
 
 %bouche
 mclef(bouche,10).
@@ -58,14 +58,7 @@ mclef(moins,10).
 
 
 
-
-notfound(X,[
-      [ 'je n ai pas la reponse' ],
-      [ 'a cette question' ]
-  ]).
-
-
-
+%===== db modifiée, à restaurer avant remise =======
 
 
 nom(beaujolais_nouveau,[beaujolais,nouveau]).
@@ -84,9 +77,9 @@ region(chiroubles,bordeaux).
 region(saint_amour,bordeaux).
 region(florilege_pauillac,ventoux).
 region(vinabc,moselle).
-region(vin_1,region1).
-region(vin_2,region2).
-region(vin_3,region3).
+region(vin_1,regionx).
+region(vin_2,regionx).
+region(vin_3,regionx).
 
 annee(beaujolais_nouveau,2013).
 annee(chiroubles,2013).
@@ -118,9 +111,9 @@ elevage(chiroubles,[['elevage de 6 mois en barriques de chene. bouchage'],['lieg
 elevage(saint_amour,[['un elevage de 12 mois en barrique de 2 vins a permis'],['a ce cru de developper toute sa complexite.']]).
 elevage(florilege_pauillac,[['19 mois en barriques (1/3 neuf - 2/3 de 3 ans)']]).
 
-description(beaujolais_nouveau,[['jolie robe rouge profond. nez gourmand, aux aromes'],['dominants de fruits rouges (cerises, framboises, fraises)'],['et de pates de fruits (cuberdon). l attaque est souple'],['et juteuse, la suite dense, racee et genereuse. l ensemble'],['est intensement parfume, frais et gouleyant. tout simplement'],['delicieux!']]).
-description(chiroubles,[['nez tendrement parfume, domine par les fruits rouges'],['(groseilles, fraises) et les epices. cette sensation fruitee'],['se poursuit en bouche avec une nuance florale et minerale.'],['beau souvenir d un vin tendre et expressif, au fruite harmonieux.']]).
-description(saint_amour,[['on ne peut resister au charme de ce cru du beaujolais'],['! les aromes de fruits rouges juteux et d epices (reglisse,'],['muscade) se melent. l ensemble est gourmand, alliant merveilleusement'],['fruit, rondeur et fraicheur. la finale veloutee et cremeuse'],['est d une grande finesse. laisse le delicieux souvenir'],['d un vin tendre et genereux. superbe!']]).
+description(beaujolais_nouveau,[['description du beaujolais'],['dominants de fruits rouges (cerises, framboises, fraises)'],['et de pates de fruits (cuberdon). l attaque est souple'],['et juteuse, la suite dense, racee et genereuse. l ensemble'],['est intensement parfume, frais et gouleyant. tout simplement'],['delicieux!']]).
+description(chiroubles,[['description du chiroubles'],['(groseilles, fraises) et les epices. cette sensation fruitee'],['se poursuit en bouche avec une nuance florale et minerale.'],['beau souvenir d un vin tendre et expressif, au fruite harmonieux.']]).
+description(saint_amour,[['desc du st amour'],['! les aromes de fruits rouges juteux et d epices (reglisse,'],['muscade) se melent. l ensemble est gourmand, alliant merveilleusement'],['fruit, rondeur et fraicheur. la finale veloutee et cremeuse'],['est d une grande finesse. laisse le delicieux souvenir'],['d un vin tendre et genereux. superbe!']]).
 description(florilege_pauillac,[['robe velours. le nez est concentre, sur les fruits'],['noirs, avec une touche bois de vigne et une note reglisse.'],['inevitablement, la bouche est puissante, mais les tannins sont elegants'],['et bien enrobes. laisse le souvenir d un cru d une grande'],['profondeur, a la fois structure et aimable, d une remarquable'],['distinction. le compagnon ideal des preparations de gibier.']]).
 
 consommation(beaujolais_nouveau,2016).
@@ -137,15 +130,15 @@ accompagnement(beaujolais_nouveau,[['tomate mozzarella, charcuteries, croutes fl
 accompagnement(chiroubles,[['charcuteries, volaille a la creme, waterzooi de'],['poulet, blanquette de veau, fondue savoyarde, pizzas, asperges,'],['salades fraicheur, waterzooi']]).
 accompagnement(saint_amour,[['tarte salee, charcuteries, viande blanche, fondue'],['savoyarde, plat asiatique viande parfume (coriandre, menthe),'],['plat asiatique viande sauce aigre-douce, assortiment'],['vapeur (dim sum).']]).
 
-nez(beaujolais_nouveau,[['nez gourmand, aux aromes dominants de fruits rouges'],['(cerises, framboises, fraises) et de pates de fruits (cuberdon)']]).
-nez(chiroubles,[['nez tendrement parfume, domine par les fruits rouges'],['(groseilles, fraises) et les epices']]).
+nez(beaujolais_nouveau,[['nez du beaujolais'],['(cerises, framboises, fraises) et de pates de fruits (cuberdon)']]).
+nez(chiroubles,[['nez du chiroubles'],['(groseilles, fraises) et les epices']]).
 nez(saint_amour,[['les aromes de fruits rouges juteux et d epices (reglisse,'],['muscade) se melent']]).
 nez(florilege_pauillac,[['le nez est concentre, sur les fruits noirs, avec une'],['touche bois de vigne et une note reglisse.']]).
 
-bouche(beaujolais_nouveau,[['l attaque est souple et juteuse, la suite dense, racee'],['et genereuse.']]).
-bouche(chiroubles,[['cette sensation fruitee se poursuit en bouche avec'],['une nuance florale et minerale.']]).
-bouche(saint_amour,[['l ensemble est gourmand, alliant merveilleusement'],['fruit, rondeur et fraicheur.']]).
-bouche(florilege_pauillac,[['inevitablement, la bouche est puissante, mais les'],['tannins sont elegants et bien enrobes.']]).
+bouche(beaujolais_nouveau,[['description du beaujolais en bouche']]).
+bouche(chiroubles,[['description du chiroubles en bouche']]).
+bouche(saint_amour,[['desc du saint amour en bouche']]).
+bouche(florilege_pauillac,[['desc florilege pauillac'],['tannins sont elegants et bien enrobes.']]).
 
 bouche(unknown,
    [ [ 'je n ai pas compris.' ],

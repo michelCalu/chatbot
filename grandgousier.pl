@@ -21,6 +21,7 @@ produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle, 0),
          trier_motcle(MotsCle, TriMotsCle),
          !,
+         print('mots trouves:'),writeln(TriMotsCle),        %for debug
          lister_regles(TriMotsCle, Q, Reponse).
 
 
@@ -33,7 +34,7 @@ produire_reponse(Q,Reponse) :-
 %
 trouver_motcle([],[], 1).
 
-trouver_motcle([],[[notfound,99]], 0).
+trouver_motcle([],[[notfound,99]], 0).          %mot clé par défaut si 0 mot trouvé
 
 trouver_motcle([H|T],[[H,P]|R], Nb):-
             mclef(H,P),
@@ -52,24 +53,23 @@ trier_motcle(L,Res):-
     sort(2,@<,L,Res).
 
 /**************************************************************************/
-% lister_regles(LmotsTriés, RèglesApplicables)
-%     ajoute dans RèglesApplicables toutes les règles contenant un mot
-%     de LmotsTriés en index
+% lister_regles(LmotsTriés, Question, Réponse)
+%     itère sur la liste de motsclé triée
+%           - unifie avec une règle de forme regle(motclé, [ID,Pattern,Count,Reponse], Question)
+%           - retourne Reponse si
+%                 - match(Question, Pattern) et conditions de la règle réussi(ssen)t
 %
 lister_regles([[notfound,99]], Question, Reponse):-
-       regle([notfound,99],[[ID,Pattern,Count,Reponse]]).
+       regle([notfound,99],[[ID,Pattern,Count,Reponse]], Question),
+       print('regle utilisee:'),writeln([notfound,99]).              %debug
 
 lister_regles([[M,_]|Rest],  Question, Reponse):-
-       regle([M,_],[[ID,Pattern,Count,Reponse]]),
-       flatten(Pattern, Regle2),
-       match(Question,Regle2),
+       regle([M,_],[[ID,Pattern,Count,Reponse]], Question),
+
+       print('regle utilisee:'),writeln([[M],[Pattern]]),            %debug
        lister_regles(Rest, Question, Reponse).
 
 lister_regles([], Question, Reponse).
-
-
-
-
 
 
 
@@ -111,22 +111,7 @@ group([H|T],[H|Tinput],Nextw,Rest):-
     !,
     group(T,Tinput,Nextw,Rest).
 
-/*****************************************************************************/
-% nom_vins_uniforme( [liste mots], [liste unifiee])
-%
-/*
-nom_vins_uniforme(Lmots,L_mots_unif) :-
-      L1 = Lmots,
-      replace_vin([beaumes,de,venise,2015],beaumes_de_venise_2015,L1,L2),
-      replace_vin([les,chaboeufs,2013],les_chaboeufs_2013,L2,L3),
-      L_mots_unif = L3.
 
-replace_vin(L,X,In,Out) :-
-      append(L,Suf,In), !, Out = [X|Suf].
-replace_vin(_,_,[],[]) :- !.
-replace_vin(L,X,[H|In],[H|Out]) :-
-      replace_vin(L,X,In,Out).
-*/
 
 /* --------------------------------------------------------------------- */
 /*                                                                       */
