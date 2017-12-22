@@ -21,7 +21,7 @@ produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle, 0),
          trier_motcle(MotsCle, TriMotsCle),
          !,
-         print('mots trouves:'),writeln(TriMotsCle),        %for debug
+         print('DEBUG mots trouves:'),writeln(TriMotsCle),        %for debug
          lister_regles(TriMotsCle, Q, Reponse).
 
 
@@ -32,9 +32,9 @@ produire_reponse(Q,Reponse) :-
 %     out: {[motclé1, poids1], [motclé2,poids2],...}
 %           ou {[unknown,99]} si pas de motclé
 %
-trouver_motcle([],[], 1).
+trouver_motcle([],[], X):- X>0.
 
-trouver_motcle([],[[notfound,99]], 0).          %mot clé par défaut si 0 mot trouvé
+trouver_motcle([],[[notfound,99]], 0).
 
 trouver_motcle([H|T],[[H,P]|R], Nb):-
             mclef(H,P),
@@ -50,7 +50,7 @@ trouver_motcle([H|T],R, Nb):-
 %
 trier_motcle([],[]).
 trier_motcle(L,Res):-
-    sort(2,@<,L,Res).
+    sort(2,@=<,L,Res).
 
 /**************************************************************************/
 % lister_regles(LmotsTriés, Question, Réponse)
@@ -61,15 +61,18 @@ trier_motcle(L,Res):-
 %
 lister_regles([[notfound,99]], Question, Reponse):-
        regle([notfound,99],[[ID,Pattern,Count,Reponse]], Question),
-       print('regle utilisee:'),writeln([notfound,99]).              %debug
+       print('DEBUG: regle utilisee:'),writeln([notfound,99]).
 
 lister_regles([[M,_]|Rest],  Question, Reponse):-
        regle([M,_],[[ID,Pattern,Count,Reponse]], Question),
+       print('DEBUG: regle utilisee:'),writeln([[M],[Pattern]]).
 
-       print('regle utilisee:'),writeln([[M],[Pattern]]),            %debug
+lister_regles([[M,_]|Rest],  Question, Reponse):-
+       not(regle([M,_],[[ID,Pattern,Count,Reponse]], Question)),
+
        lister_regles(Rest, Question, Reponse).
 
-lister_regles([], Question, Reponse).
+lister_regles([], _, _).
 
 
 

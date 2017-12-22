@@ -53,8 +53,9 @@ mclef(auriez,10).
 mclef(conseiller,10).
 
 mclef(entre,10).
-mclef(plus,10).
+
 mclef(moins,10).
+mclef(cher,9).
 
 
 
