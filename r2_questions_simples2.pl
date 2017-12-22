@@ -106,7 +106,7 @@ moins_cher(X):- prix(X, PrixX), prix(Y, PrixY), Y\=X, PrixX > PrixY.
 
 /***************************************************************************/
 % lvins_prix_min_max(Min, Max, Result)
-%     out: Liste de tous les vins de min<=prix<=max
+%     out: Liste de tous les vins de Min<=Prix<=Max
 %
 lvins_prix_min_max(Min,Max,Lvins) :-
       findall( (Vin,P) , prix_vin_min_max(Vin,P,Min,Max), Lvins ).
