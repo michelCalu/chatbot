@@ -20,6 +20,11 @@ sr([appellation|X],[region|Y],X,Y).
 sr([origine|X],[region|Y],X,Y).
 sr([provient|X],[region|Y],X,Y).
 
+sr([conseillez|X],[region|Y],X,Y).
+sr([avez|X],[region|Y],X,Y).
+sr([auriez|X],[region|Y],X,Y).
+sr([conseiller|X],[region|Y],X,Y).
+
 sr([coute|X],[prix|Y],X,Y).
 sr([acheter|X],[prix|Y],X,Y).
 
@@ -68,10 +73,10 @@ mclef(description,9). % pondération moindre, permet de gérer les cas parler mo
 %mclef(presentez,10).
 %mclef(dire,10).
 
-mclef(conseillez,10).
-mclef(avez,10).
-mclef(auriez,10).
-mclef(conseiller,10).
+%mclef(conseillez,10).
+%mclef(avez,10).
+%mclef(auriez,10).
+%mclef(conseiller,10).
 
 mclef(entre,10).
 

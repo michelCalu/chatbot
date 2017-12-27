@@ -21,8 +21,20 @@ sublist([X|XS], [X|XSS]) :- sublist(XS, XSS).
 sublist([X|XS], [_|XSS]) :- sublist([X|XS], XSS).*/
 
 get_vin(L_mots, ID) :-
-  sublist(Vin, L_mots),
-  nom(ID, Vin).
+  sublist(Nom_Vin, L_mots),
+  nom(ID, Nom_Vin).
+
+get_region(L_mots, Region) :-
+  sublist([Region], L_mots),
+  region(_, Region).
+
+get_vin_de(Region,  L) :-
+     findall( ID, region(ID, Region), L).
+
+get_nom_de([], []).
+get_nom_de([ID|T], [Nom|Rest]) :-
+      nom(ID,Nom),
+      get_nom_de(T,Rest).
 
 /*get_vin(L_mots, Vin, ID) :-
   match(L_mots, [Vin,_]),
@@ -140,18 +152,37 @@ regle([olfactives ,5],[
 % D’où provient le [vin] ?                      OK
 % De quelle origine est le [vin] ?              OK
 
-% PROBLEME si 2 mots cle dans la question: ex: de quelle région provient le X?
+% questions région      ---> OK pb findall résolu
+%
+% Que recouvre l’appellation [région] ?               OK
+% Quels vins de [région] me conseillez-vous ?         OK
+% Quels vins de [région] avez-vous ?                  OK
+% Auriez-vous un [région] ?                           OK
+
+% ni l'un ni l'autre
 
 regle([region,5],[
         	[1, [_],0 , Reponse ]], Question):-
                       get_vin(Question, ID),
+                      !,
                       region(ID,Region),
                       Reponse=([['c est un vin de '],[Region]]).
 
 regle([region,5],[
         	[1, [_],0 , Reponse ]], Question):-
-                      not(get_vin(Question, ID)),
-                      Reponse = [['pas de vin correspondant pour region']].
+                      get_region(Question, Region),
+                      !,
+                      get_vin_de(Region, List),
+                      get_nom_de(List, Noms),
+                      % ICI: limiter nombre de noms à x?
+                      % idée; ajouter ranking des vins pour classer le x?
+                      Reponse=([['nous pouvons vous conseiller  '],Noms]).       %faire affichage amélioré
+
+regle([region,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      not(get_vin(Question, _)),
+                      not(get_region(Question, _)),
+                      Reponse = [['pas de vin ou de region correspondant']].
 
 /*regle([appellation,5],
                   [ [1, [Y,appellation,du,X ],0 , Reponse ]], Question):-
