@@ -2,7 +2,7 @@
 :- [base_connaissance].
 :- [r0_autres_regles].
 :- [r1_questions_simples1].
-%:- [r2_questions_simples2].
+:- [r2_questions_simples2].
 :- [conversion_util].
 :- [liste_mots_util].
 
