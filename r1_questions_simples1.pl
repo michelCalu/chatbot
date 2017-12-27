@@ -12,6 +12,33 @@
 %           à remplacer par _ en fin de projet
 %
 
+prefix(X, L) :- append(X, _, L).
+suffix(X, L) :- append(_, X, L).
+sublist(X, L) :- suffix(S, L), prefix(X, S).
+
+/*sublist([], _).
+sublist([X|XS], [X|XSS]) :- sublist(XS, XSS).
+sublist([X|XS], [_|XSS]) :- sublist([X|XS], XSS).*/
+
+get_vin(L_mots, ID) :-
+  sublist(Vin, L_mots),
+  nom(ID, Vin).
+
+/*get_vin(L_mots, Vin, ID) :-
+  match(L_mots, [Vin,_]),
+  nom(ID, Vin).
+
+get_vin(L_mots, Vin, ID) :-
+  match(L_mots, [_,Vin]),
+  nom(ID, Vin).
+
+get_vin(L_mots, Vin, ID) :-
+  match(L_mots, [_,Vin,_]),
+  nom(ID, Vin).
+
+get_vin(L_mots, Vin, ID) :-
+  match(L_mots, [Vin]),
+  nom(ID, Vin).*/
 
 % questions bouche (motcle[#bouche, #attaque, #longueur])
 %
@@ -20,9 +47,17 @@
 % Comment est l’attaque du [vin] ?        OK
 % Parlez-moi de la longueur du [vin] ?    OK
 
-
+regle([bouche,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      get_vin(Question, ID),
+                      bouche(ID,Reponse).
 
 regle([bouche,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      not(get_vin(Question, ID)),
+                      Reponse = [['pas de vin correspondant pour bouche']].
+
+/*regle([bouche,5],[
         	[1, [bouche,X],0 , Reponse ]], Question):-
                       match(Question, [bouche,X]),
                       nom(ID, X),
@@ -39,7 +74,7 @@ regle([bouche,5],[
       	[1, [_, du, X, en, bouche],0 , Reponse ]], Question):-
     match(Question, [_, du, X, en, bouche]),
     nom(ID, X),
-    bouche(ID,Reponse).
+    bouche(ID,Reponse).*/
 
 
 regle([attaque,5],[

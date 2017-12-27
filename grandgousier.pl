@@ -4,6 +4,7 @@
 :- [r1_questions_simples1].
 :- [r2_questions_simples2].
 :- [conversion_util].
+:- [liste_mots_util].
 
 /* --------------------------------------------------------------------- */
 /*                                                                       */
@@ -141,7 +142,8 @@ grandgousier :-
    repeat,
       write('Vous : '),
       lire_question(L_Mots),
-      produire_reponse(L_Mots,L_ligne_reponse),
+      simplify(L_Mots,L_Mots_Simpl),
+      produire_reponse(L_Mots_Simpl,L_ligne_reponse),
       ecrire_reponse(L_ligne_reponse),
    fin(L_Mots), !.
 
