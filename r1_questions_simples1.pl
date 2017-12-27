@@ -74,7 +74,7 @@ regle([bouche,5],[
       	[1, [_, du, X, en, bouche],0 , Reponse ]], Question):-
     match(Question, [_, du, X, en, bouche]),
     nom(ID, X),
-    bouche(ID,Reponse).*/
+    bouche(ID,Reponse).
 
 
 regle([attaque,5],[
@@ -89,7 +89,7 @@ regle([longueur,5],[
                ], Question):-
                     match(Question, [_, longueur, du, X]),
     nom(ID, X),
-                    bouche(ID,Reponse).
+                    bouche(ID,Reponse).*/
 
 
 
@@ -101,6 +101,16 @@ regle([longueur,5],[
 % Quelles sont les propriétés olfactives du [vin] ?   OK
 
 regle([nez,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      get_vin(Question, ID),
+                      nez(ID,Reponse).
+
+regle([nez,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      not(get_vin(Question, ID)),
+                      Reponse = [['pas de vin correspondant pour nez']].
+
+/*regle([nez,5],[
         	[1, [Z,nez,Y,le,X],0 , Reponse ]], Question):-
                  match(Question, [Z,nez,Y,le,X]),
                  nom(ID, X),
@@ -121,7 +131,7 @@ regle([olfactives ,5],[
       	[1, [Y,proprietes,olfactives,du,X],0 , Reponse ]], Question):-
                  match(Question, [Y,proprietes,olfactives,du,X]),
                  nom(ID, X),
-                 nez(ID,Reponse).
+                 nez(ID,Reponse).*/
 
 
 % questions région  (motcle[#appellation, #region, #ou, #origine])
@@ -132,7 +142,18 @@ regle([olfactives ,5],[
 
 % PROBLEME si 2 mots cle dans la question: ex: de quelle région provient le X?
 
-regle([appellation,5],
+regle([region,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      get_vin(Question, ID),
+                      region(ID,Region),
+                      Reponse=([['c est un vin de '],[Region]]).
+
+regle([region,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      not(get_vin(Question, ID)),
+                      Reponse = [['pas de vin correspondant pour region']].
+
+/*regle([appellation,5],
                   [ [1, [Y,appellation,du,X ],0 , Reponse ]], Question):-
                   match(Question, [Y,appellation,du,X ]),
                   nom(ID, X),
@@ -158,7 +179,7 @@ regle([origine,5],
                   match(Question, [Y,origine,du,X ]),
                   nom(ID, X),
                   region(ID,Region),
-                  Reponse=([['c est un vin de '],[Region]]).
+                  Reponse=([['c est un vin de '],[Region]]).*/
 
 
 
@@ -169,7 +190,19 @@ regle([origine,5],
 % Combien coûte le [vin] ?                            OK
 % Que coûte le [vin] ?                                OK
 % À quelle prix puis-je acheter le [vin] ?            Pb si 2 mots clé: modifié en "a combien puis je acheter"
-regle([prix,5],
+
+regle([prix,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      get_vin(Question, ID),
+                      prix(ID,Prix),
+                      Reponse=([['le prix est de '],[Prix],['EUR']]).
+
+regle([prix,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      not(get_vin(Question, ID)),
+                      Reponse = [['pas de vin correspondant pour prix']].
+
+/*regle([prix,5],
                   [ [1, [Y,prix,du,X ],0 , Reponse ]], Question):-
                   match(Question, [Y,prix,du,X ]),
                   nom(ID, X),
@@ -188,7 +221,7 @@ regle([acheter,5],
                   match(Question, [Y,acheter,le,X ]),
                   nom(ID, X),
                   prix(ID,Prix),
-                  Reponse=([['le prix est de '],[Prix],['EUR']]).
+                  Reponse=([['le prix est de '],[Prix],['EUR']]).*/
 
 
 
@@ -198,7 +231,18 @@ regle([acheter,5],
 % Décrivez-moi le [vin] ?                             OK
 % Présentez-moi le [vin] ?                            OK
 % Que pouvez-vous me dire au sujet du [vin] ?         OK
-regle([parler,5],
+
+regle([description,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      get_vin(Question, ID),
+                      description(ID, Reponse).
+
+regle([description,5],[
+        	[1, [_],0 , Reponse ]], Question):-
+                      not(get_vin(Question, ID)),
+                      Reponse = [['pas de vin correspondant pour prix']].
+
+/*regle([parler,5],
                   [ [1, [Y,parler,du,X ],0 , Reponse ]], Question):-
                   match(Question, [Y,parler,du,X ]),
                   nom(ID, X),
@@ -220,4 +264,4 @@ regle([dire,5],
                   [ [1, [Y, dire,au,sujet,du,X ],0 , Reponse ] ], Question):-
                   match(Question, [Y, dire,au,sujet,du,X ]),
                   nom(ID, X),
-                  description(ID, Reponse).
+                  description(ID, Reponse).*/
