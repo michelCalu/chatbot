@@ -33,9 +33,9 @@ produire_reponse(Q,Reponse) :-
 %     out: {[motclé1, poids1], [motclé2,poids2],...}
 %           ou {[unknown,99]} si pas de motclé
 %
-trouver_motcle([],[], X):- X>0.
+%trouver_motcle([],[], X):- X>0.
 
-trouver_motcle([],[[notfound,99]], 0).
+trouver_motcle([],[[notfound,1]], _).
 
 trouver_motcle([H|T],[[H,P]|R], Nb):-
             mclef(H,P),

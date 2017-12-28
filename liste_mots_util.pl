@@ -43,7 +43,7 @@ remplace(vni,vin).
 % Mots-cle:
 % 1 seul motclef(mot, poids) par mot à reconnaitre
 mclef(bonjour,1).
-
+mclef(fin,1).
 
 %bouche
 mclef(bouche,10).
