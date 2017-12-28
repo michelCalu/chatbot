@@ -20,7 +20,8 @@
 
 produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle, 0),
-         trier_motcle(MotsCle, TriMotsCle),
+         %trier_motcle(MotsCle, TriMotsCle),
+         sort(2,@>=,MotsCle,TriMotsCle),
          !,
          print('DEBUG mots trouves:'),writeln(TriMotsCle),        %for debug
          lister_regles(TriMotsCle, Q, Reponse).
@@ -41,6 +42,7 @@ trouver_motcle([H|T],[[H,P]|R], Nb):-
             mclef(H,P),
             NewNb is Nb + 1,
             trouver_motcle(T,R, NewNb).
+
 trouver_motcle([H|T],R, Nb):-
             not(mclef(H,_)),
             trouver_motcle(T,R, Nb).
@@ -49,7 +51,7 @@ trouver_motcle([H|T],R, Nb):-
 % trier_motcle(Liste, ListeTriée)
 %     trie une liste de mots-clé par poids
 %
-trier_motcle([],[]).
+%trier_motcle([],[]).
 trier_motcle(L,Res):-
     sort(2,@=<,L,Res).
 

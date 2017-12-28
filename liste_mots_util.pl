@@ -33,6 +33,10 @@ sr([parler|X],[description|Y],X,Y).
 sr([presentez|X],[description|Y],X,Y).
 sr([dire|X],[description|Y],X,Y).
 
+sr([onereux|X],[cher|Y],X,Y).
+
+sr([fourchette,de|X],[entre|Y],X,Y).
+
 /***********************************************/
 % transformations fautes d'orthographe, typo, pluriel...
 remplace(vins,vin).
@@ -80,5 +84,6 @@ mclef(description,9). % pondération moindre, permet de gérer les cas parler mo
 
 mclef(entre,10).
 
-mclef(moins,10).
+mclef(moins,8).
+mclef(plus,8).
 mclef(cher,9).
