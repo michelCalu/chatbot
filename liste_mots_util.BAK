@@ -1,9 +1,9 @@
-﻿% simplify(+List,-Result)
+% simplify(+List,-Result)
 %   implements non-overlapping simplification
 %   simplifies List into Result
 
 simplify(List,Result) :- sr(List,Result,X,Y), !,
-                         simplify(X,Y).
+			 simplify(X,Y).
 simplify([W|Words],[W|NewWords]) :- simplify(Words,NewWords).
 simplify([],[]).
 
@@ -36,17 +36,6 @@ sr([dire|X],[description|Y],X,Y).
 sr([onereux|X],[cher|Y],X,Y).
 
 sr([fourchette,de|X],[entre|Y],X,Y).
-
-sr([met|X],[plat|Y],X,Y).
-sr([mets|X],[plat|Y],X,Y).
-sr([plats|X],[plat|Y],X,Y).
-sr([preparation|X],[plat|Y],X,Y).
-sr([preparations|X],[plat|Y],X,Y).
-
-sr([aller|X],[accompagner|Y],X,Y).
-sr([irait|X],[accompagner|Y],X,Y).
-sr([cuisiner|X],[accompagner|Y],X,Y).
-sr([accompagne|X],[accompagner|Y],X,Y).
 
 /***********************************************/
 % transformations fautes d'orthographe, typo, pluriel...
@@ -98,26 +87,3 @@ mclef(entre,10).
 mclef(moins,8).
 mclef(plus,8).
 mclef(cher,9).
-
-mclef(plat,8).
-mclef(accompagner,8).
-mclef(autre,6).
-
-%------------------------------------------------------------------------
-%  Post : Resultat contient une sous liste de Liste
-%  composée de Lg éléments d'index Base, Base+1...
-%  Le premier élément est d'indice 1
-%  Si Lg est trop grand, le dernier élément sera renvoyé plusieurs fois
-%  Si base est trop grand, on prend le dernier élément
-%  choix ([a,b,c,d,e],2,3) retourne b,c,d
-%  ----------------------------------------------------------------------
-
-choix(_,_,0,_).
-choix(Liste,Base,Lg,Resultat) :-
-    length(Liste,Lgliste),
-    Mi is min(Base,Lgliste), %si base>longueur liste, on prend la longueur
-    nth1(Mi,Liste,X),
-    Newlg is Lg-1,
-    Newmi is Mi+1,
-    choix(Liste,Newmi,Newlg,Newresultat),
-    append(Newresultat,[X],Resultat).
