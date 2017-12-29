@@ -20,7 +20,7 @@ regle([notfound,1],[
 notfound(X,[
       [ 'pas reconnu de mot cle' ],
       [ '...' ],
-      [ 'pred. notfound 1 activated']          %debug
+      [ 'pred. notfound 1 activated']          %debug: affiche réponse si pas de motclé trouvé
   ]).
 
 salutation(bonjour, [['bonjour a vous']]).

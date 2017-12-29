@@ -1,5 +1,5 @@
 ﻿:- style_check(-singleton).
-:- [base_connaissance2].
+:- [base_connaissance].
 :- [r0_autres_regles].
 :- [r1_questions_simples1].
 :- [r2_questions_simples2].
@@ -21,10 +21,9 @@
 
 produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle, 0),
-         %trier_motcle(MotsCle, TriMotsCle),
          sort(2,@>=,MotsCle,TriMotsCle),
          !,
-         print('DEBUG mots trouves:'),writeln(TriMotsCle),        %for debug
+         print('DEBUG mots trouves:'),writeln(TriMotsCle),        % debug
          lister_regles(TriMotsCle, Q, Reponse).
 
 
@@ -79,8 +78,6 @@ lister_regles([[M,_]|Rest],  Question, Reponse):-
 lister_regles([], _, _).
 
 
-
-
 /**********************************************************/
 % match(Input, Pattern)
 %     matches Input Vs a Pattern
@@ -119,7 +116,6 @@ group([H|T],[H|Tinput],Nextw,Rest):-
     group(T,Tinput,Nextw,Rest).
 
 
-
 /* --------------------------------------------------------------------- */
 /*                                                                       */
 /*                            TEST DE FIN                                */
@@ -127,7 +123,6 @@ group([H|T],[H|Tinput],Nextw,Rest):-
 /* --------------------------------------------------------------------- */
 
 fin(L) :- member(fin,L).
-
 
 /* --------------------------------------------------------------------- */
 /*                                                                       */

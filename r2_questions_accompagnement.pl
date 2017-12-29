@@ -45,12 +45,12 @@ partie_liste(Liste, Newliste) :-
   write(Mi), write(' '), write(Lg), write(' '), writeln(Nb),
   %Newliste = Liste.
   choix(Liste,Mi,Lg,Newliste). */
-  
+
 partie_liste(A,B) :-
   writeln(hello),
   B=A.
 
-% 2 est le nombre d'items affichés simultanément
+% 2 est le nombre d'items affichÃ©s simultanÃ©ment
 calcule(Nb,Mi,Lg) :-
    nb_getval(depart,Mi),
    (Mi+2-1)>=Nb,
@@ -64,14 +64,14 @@ calcule(Nb,Mi,Lg) :-
    X is (Mi+2),
    %write('Augmente x'),writeln(X),
    nb_setval(depart,X).
-  
-  
-% Prend une liste de plats, et retourne une liste où ils sont séparés par des virgules
+
+
+% Prend une liste de plats, et retourne une liste oÃ¹ ils sont sÃ©parÃ©s par des virgules
 format_plats([],_).
 format_plats([H|T],Sortie) :-
    format_plats(T,Newsortie),
    append(Newsortie,[H,','],Sortie).
-   
+
 % Quel vin accompagne du brie?
 regle([accompagner,8],[
                 [1, [_],0 , Reponse ]], Question):-
@@ -79,13 +79,13 @@ regle([accompagner,8],[
                       get_vin_acc(Plat, List),!,
                       partie_liste(List, Liste2),!,
                       format_vins(Liste2, Listevins),!,
-                      Reponse=([['pour accompagner du ',Plat,' je vous suggère '],Listevins]).
-                      
+                      Reponse=([['pour accompagner du ',Plat,' je vous suggere '],Listevins]).
+
 regle([accompagner,8],[
                 [1, [_],0 , Reponse ]], Question):-
                       not(get_plat(Question, _)),
                       Reponse = [['je suis confus, je ne trouve pas de vin correspondant']].
-                  
+
 % Quel plat pour du chiroubles ?
 regle([plat,8],[
                 [1, [_],0 , Reponse ]], Question):-
@@ -93,21 +93,21 @@ regle([plat,8],[
                       get_plats(ID,Liste),!,
                       format_plats(Liste,ListePlats),!,
                       Reponse=([['vous pouvez utiliser le ',ID,' avec les plats suivants : '],ListePlats]).
-                      
+
 
 regle([plat,8],[
                 [1, [_],0 , Reponse ]], Question):-
                       not(get_vin(Question, _)),
                       Reponse = [['je suis confus, je ne trouve pas de vin correspondant']].
-                      
+
 regle([autre,6],[
                 [1, [_],0 , Reponse ]], _):-
                       nb_getval(depart,X),
                       X>1,
                       Reponse = [['oui, oui'],[X]].
-                      
+
 regle([autre,6],[
                 [1, [_],0 , Reponse ]], _):-
                       nb_getval(depart,X),
                       X<2,
-                      Reponse = [['non, désolé'],[X]].
+                      Reponse = [['non, desole'],[X]].

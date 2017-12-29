@@ -4,9 +4,6 @@ prefix(X, L) :- append(X, _, L).
 suffix(X, L) :- append(_, X, L).
 sublist(X, L) :- suffix(S, L), prefix(X, S).
 
-/*sublist([], _).
-sublist([X|XS], [X|XSS]) :- sublist(XS, XSS).
-sublist([X|XS], [_|XSS]) :- sublist([X|XS], XSS).*/
 
 get_vin(L_mots, ID) :-
   sublist(Nom_Vin, L_mots),
@@ -88,7 +85,10 @@ regle([prix,5],[
         	[1, [_],0 , Reponse ]], Question):-
                       get_vin(Question, ID),
                       prix(ID,Prix),
-                      Reponse=([['le prix est de '],[Prix],['EUR']]).
+                      nom(ID,Nom),
+                      Rep=([['le prix du'], Nom, ['est de '],[Prix],['Eur']]),
+                      flatten(Rep,Rep2),                          %TO DO flatten pour éviter les \nl à l'affichage entre chaque sous liste
+                      Reponse=([Rep2]).
 
 regle([prix,5],[
         	[1, [_],0 , Reponse ]], Question):-
