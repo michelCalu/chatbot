@@ -1,11 +1,25 @@
 :- multifile regle/3.
 
-% questions région
+/***************************************************************************/
+% rep_lvins(ListeIDvins, Reponse)
+%     affiche une liste de vins avec leur prix
+
+%  -  [beaujolais,nouveau] ( 6.75  EUR )
+%  -  [chiroubles] ( 8.41  EUR )
+%  -  [saint,amour] ( 11.43  EUR )
 %
-% Que recouvre l’appellation [région] ?               OK
-% Quels vins de [région] me conseillez-vous ?         OK
-% Quels vins de [région] avez-vous ?                  OK
-% Auriez-vous un [région] ?                           OK
+rep_lvins([], [[ non, '.' ]]).
+rep_lvins([H|T], [ [ oui, '.', je, dispose, de ] | L]) :-
+ rep_litems([H|T],L).
+
+rep_litems([],[]) :- !.
+rep_litems([ID|L], [Irep|Ll]) :-
+ nom(ID,Nom),
+ prix(ID,Prix),
+ Irep = [ '- ', Nom, '(', Prix, ' EUR )' ],
+ rep_litems(L,Ll).
+
+
 
 get_region(L_mots, Region) :-
   sublist([Region], L_mots),
@@ -27,18 +41,7 @@ regle([region,5],[
                       !,
                       get_vin_de(Region, List),
                       get_nom_de(List, Noms),
-                      % ICI: limiter nombre de noms à x?
-                      % idée; ajouter ranking des vins pour classer le x?
-                      Reponse=([['nous pouvons vous conseiller  '],Noms]).       %faire affichage amélioré
-
-
-
-% questions prix                  ===========  OK =============
-%
-% Auriez-vous des vins entre [prix_min] et [prix_max] ?     OK
-% Quel est votre vin le plus cher ?
-% Quel est votre vin le moins cher ?
-% Auriez-vous des vins à moins de [prix_max] ?
+                      rep_lvins(List,Reponse).
 
 
 /***************************************************************************/
@@ -75,19 +78,17 @@ regle([entre,5],
                         Reponse=([['le prix maximum n est pas un nombre']]).
 
 
-regle([cher,5],
-      [[1, [_], 0, Reponse]], Question):-
-                        match(Question, [_,le,plus,_]),
+regle([cher,9],
+      [[1, [_,le,plus,cher], 0, Reponse]], Question):-
+                        match(Question, [_,le,plus,cher]),
                         vin_prix_max(Vin),
-                        nom(Vin, Nom),
-                        Reponse=([['notre vin le plus cher est le  '], Nom]).       %affichage
+                        rep_lvins([Vin],Reponse).
 
-regle([cher,5],
-      [[1, [_], 0, Reponse]], Question):-
-                        match(Question, [_,le,moins,_]),
+regle([cher,9],
+      [[1, [_,le,moins,cher], 0, Reponse]], Question):-
+                        match(Question, [_,le,moins,cher]),
                         vin_prix_min(Vin),
-                        nom(Vin, Nom),
-                        Reponse=([['notre vin le moins cher est le  '], Nom]).      %affichage
+                        rep_lvins([Vin],Reponse).
 
 
 regle([moins,5],
@@ -95,22 +96,22 @@ regle([moins,5],
                         match(Question, [_,moins,de,PrixMax]),
                         is_number(PrixMax),
                         vins_moins_de_max(PrixMax, LVins),
-                        Reponse=([['oui, nous vous proposons par exemple: '], LVins]).      %à faire: affichage liste + cas liste vide
-
+                        rep_lvins(LVins,Reponse).
 
 regle([plus,5],
       [[1, [_,plus,de,PrixMin], 0, Reponse]], Question):-
                         match(Question, [_,plus,de,PrixMin]),
                         is_number(PrixMin),
-                        vins_plus_de_min(PrixMin, LVins),
-                        Reponse=([['oui, nous vous proposons par exemple: '], LVins]).      %à faire: affichage liste + cas liste vide
+                        vins_plus_de_min(PrixMin, Lvins),
+                        rep_lvins(LVins,Reponse).
+
 
 /***************************************************************************/
 % vins_moins_de_max(Max, Lvins)
 %     out: Lvins = liste des vins dont le prix est <= Max
 %
 vins_moins_de_max(Max,Lvins) :-
-      findall( (Vin,P) , prix_moins_de_max(Vin,P,Max), Lvins ).
+      findall( (Vin) , prix_moins_de_max(Vin,P,Max), Lvins ).
 
 prix_moins_de_max(Vin,P,Max) :-
       prix(Vin,P),
