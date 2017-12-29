@@ -6,6 +6,7 @@
 :- [r2_questions_accompagnement].
 :- [conversion_util].
 :- [liste_mots_util].
+:- [learning].
 
 /* --------------------------------------------------------------------- */
 /*                                                                       */

@@ -380,4 +380,4 @@ bouche(condrieu,[['la bouche allie volume et equilibre']]).
 bouche(laudun,[['cette intensite aromatique se prolonge en bouche'],['avec des saveurs a la fois denses, racees et complexes.']]).
 bouche(ventoux,[['en bouche, les saveurs sont fruitees, epicees et'],['florales.']]).
 bouche(lirac,[['la bouche devoile d abord des saveurs de fruits frais'],['et d epices. elle est remarquablement concentree']]).
-bouche(hermitage,[['la bouche est racee et concentree, alliant matiere'],['et fraicheur']]).
+%bouche(hermitage,[]). supprimé ce prédicat intentionnellement pour tester l'apprentissage
