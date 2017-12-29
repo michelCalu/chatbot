@@ -1,6 +1,6 @@
 :- multifile regle/3.
 
-% questions région      ---> OK pb findall résolu
+% questions région
 %
 % Que recouvre l’appellation [région] ?               OK
 % Quels vins de [région] me conseillez-vous ?         OK
@@ -20,12 +20,6 @@ get_nom_de([ID|T], [Nom|Rest]) :-
       get_nom_de(T,Rest).
 
 
-% questions région
-%
-% Que recouvre l’appellation [région] ?               OK
-% Quels vins de [région] me conseillez-vous ?         OK
-% Quels vins de [région] avez-vous ?                  OK
-% Auriez-vous un [région] ?                           OK
 
 regle([region,5],[
         	[1, [_],0 , Reponse ]], Question):-
@@ -46,15 +40,40 @@ regle([region,5],[
 % Quel est votre vin le moins cher ?
 % Auriez-vous des vins à moins de [prix_max] ?
 
-% DEBUG : vérif X et Y sont des nombres
+
+/***************************************************************************/
+% is_number(X)
+%     return true if X is an integer, or a list of 1 integer, else false.
+%
+is_number(X):-
+      is_list(X),
+      nth0(0,X,ValueX),
+      number(ValueX).
+is_number(X):-
+      number(X).
+
+
 regle([entre,5],
       [[1, [_, X, et, Y ], 0, Reponse]], Question):-
                         match(Question, [_,entre, X, et, Y ]),
-                        %number(X),
-                        %number(Y),
+                        is_number(X),
+                        is_number(Y),
                         sort(0,@=<,[X,Y],[Min,Max]),
                         lvins_prix_min_max(Min,Max,Lvins),
                         rep_lvins_min_max(Lvins,Reponse).
+
+regle([entre,5],
+      [[1, [_, X, et, Y ], 0, Reponse]], Question):-
+                        match(Question, [_,entre, X, et, Y ]),
+                        not(is_number(X)),!,
+                        Reponse=([['le prix minimum n est pas un nombre']]).
+
+regle([entre,5],
+      [[1, [_, X, et, Y ], 0, Reponse]], Question):-
+                        match(Question, [_,entre, X, et, Y ]),
+                        not(is_number(Y)),!,
+                        Reponse=([['le prix maximum n est pas un nombre']]).
+
 
 regle([cher,5],
       [[1, [_], 0, Reponse]], Question):-
@@ -70,19 +89,19 @@ regle([cher,5],
                         nom(Vin, Nom),
                         Reponse=([['notre vin le moins cher est le  '], Nom]).      %affichage
 
-% DEBUG : vérif PrixMax est un nombre
+
 regle([moins,5],
       [[1, [_,moins,de,PrixMax], 0, Reponse]], Question):-
                         match(Question, [_,moins,de,PrixMax]),
-                        %number(PrixMax),
+                        is_number(PrixMax),
                         vins_moins_de_max(PrixMax, LVins),
                         Reponse=([['oui, nous vous proposons par exemple: '], LVins]).      %à faire: affichage liste + cas liste vide
 
-% DEBUG : vérif PrixMin est un nombre
+
 regle([plus,5],
       [[1, [_,plus,de,PrixMin], 0, Reponse]], Question):-
                         match(Question, [_,plus,de,PrixMin]),
-                        %number(PrixMin),
+                        is_number(PrixMin),
                         vins_plus_de_min(PrixMin, LVins),
                         Reponse=([['oui, nous vous proposons par exemple: '], LVins]).      %à faire: affichage liste + cas liste vide
 
