@@ -34,9 +34,19 @@ regle([bouche,5],[
                       bouche(ID,Reponse).
 
 regle([bouche,5],[
+      	[1, [_],0 , Reponse ]], Question):-
+                    get_vin(Question, ID),
+                    not(bouche(ID,_)),
+                    writeln('nous n avons pas encore cette information.'),
+                    writeln('voulez vous partager votre experience avec ce vin?'),
+                    learn(ID,bouche),
+                    Reponse = [['merci pour votre collaboration.']].
+
+regle([bouche,5],[
         	[1, [_],0 , Reponse ]], Question):-
                       not(get_vin(Question, ID)),
                       Reponse = [['pas de vin correspondant pour bouche']].
+
 
 % questions nez     (motcle[#nez, #aromes, #bouquet, #olfactives])
 %
