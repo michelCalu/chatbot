@@ -1,3 +1,8 @@
+/***************************************************************************/
+% learn(Vin, Predicat)
+%     in: input from utilisateur
+%     out: creates a fact predicat(vin, input)
+%
 learn(Vin, Pred) :-
     print('que pouvez vous nous dire de ce vin:' ),
     lire_question(Input),
