@@ -1,0 +1,11 @@
+ ToDoList
+----------
+
+ - ajouter tests unitaires pour nouvelles règles
+ - bugs d'affichage pour les réponses R3 (prob de liste)
+ - mémorisation liste de vins (pour questions ultérieures)
+ - mémorisation propriétés d'un vin (pour questions ultérieures)
+ - vérifier et éventuellement améliorer mise en forme des réponses
+ - spécifier code (canevas à définir, se baser sur Michel ?)
+ - gérer les variations lexicographiques dans les questions (module REGEX pour Prolog)
+ - simplifier prédicats règles (si le temps, facultatif)
