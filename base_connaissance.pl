@@ -1,9 +1,3 @@
-:- discontiguous nom/2.
-:- discontiguous mclef/2.
-:- discontiguous prix/2.
-:- discontiguous bouche/2.
-:- discontiguous nez/2.
-:- discontiguous description/2.
 
 nom(beaujolais_nouveau,[beaujolais,nouveau]).
 nom(chiroubles,[chiroubles]).
@@ -358,8 +352,16 @@ nez(sancerre_rouge,[['"nez aromatique et friand qui ""pinote"" (cerise'],['rouge
 nez(condrieu,[['belle intensite aromatique a la fois riche et complexe,'],['avec des aromes d abricots, de peche, et une intensite'],['epicee remarquable']]).
 nez(laudun,[['magnifique nez intense de fruits du verger (peche,'],['mirabelle) associes a des nuances d epices et une note citronnee']]).
 nez(ventoux,[['nez intense et expressif de fruits rouges (a noyaux)'],['et d epices (aiguilles de pin, reglisse, etc).']]).
-nez(lirac,[['la robe noire annonce la couleur: bouquet intense'],['de fruits noirs (noyaux) et d epices associe a des notes'],['de chocolat et de garrigue']]).
-nez(hermitage,[['nez empyreumatique, associant fruits noirs surmuris'],['et agrumes a des notes de tabac et de reglisse.']]).
+
+/***************************************************************************/
+% nez(vin, [description du nez])
+%     a set of dynamically assignble predicates
+%     in: input from learning/2
+%     out: returns learned predicate
+%
+nez(lirac,Userinput):- nez_dyn(Vin,Userinput).
+nez(hermitage,Userinput):- nez_dyn(Vin,Userinput).
+
 
 bouche(beaujolais_nouveau,[['l attaque est souple et juteuse, la suite dense, racee'],['et genereuse.']]).
 bouche(chiroubles,[['cette sensation fruitee se poursuit en bouche avec'],['une nuance florale et minerale.']]).
@@ -379,5 +381,12 @@ bouche(sancerre_rouge,[['la bouche est delicieuse, charmeuse, deployant'],['ses 
 bouche(condrieu,[['la bouche allie volume et equilibre']]).
 bouche(laudun,[['cette intensite aromatique se prolonge en bouche'],['avec des saveurs a la fois denses, racees et complexes.']]).
 bouche(ventoux,[['en bouche, les saveurs sont fruitees, epicees et'],['florales.']]).
-bouche(lirac,[['la bouche devoile d abord des saveurs de fruits frais'],['et d epices. elle est remarquablement concentree']]).
-%bouche(hermitage,[]). supprimé ce prédicat intentionnellement pour tester l'apprentissage
+
+/***************************************************************************/
+% bouche(vin, [description en bouche])
+%     a set of dynamically assignble predicates
+%     in: input from learning/2
+%     out: returns learned predicate
+%
+bouche(lirac,Userinput):- bouche_dyn(Vin,Userinput).
+bouche(hermitage,Userinput):- bouche_dyn(Vin,Userinput).
