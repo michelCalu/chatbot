@@ -34,7 +34,7 @@ vins_plus_de_min(Min,Lvins) :-
 
 prix_plus_de_min(Vin,P,Min) :-
       prix(Vin,P),
-      P > Min.
+      P >= Min.
 
 
 /***************************************************************************/

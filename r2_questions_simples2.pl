@@ -32,11 +32,11 @@ regle([moins,5],
                         vins_moins_de_max(PrixMax, LVins),
                         rep_lvins(LVins,Reponse).
 
-regle([plus,5],       %bug: pq vins_plus_de_min(10,L) donne une liste non finie??? alors que vins_moins_de_max(PrixMax, LVins) est OK
+regle([plus,5],
       [[1, [_,plus,de,PrixMin], 0, Reponse]], Question):-
                         match(Question, [_,plus,de,PrixMin]),
                         is_number(PrixMin),
-                        vins_plus_de_min(PrixMin, Lvins),
+                        vins_plus_de_min(PrixMin, LVins),
                         rep_lvins(LVins,Reponse).
 
 regle([entre,5],
