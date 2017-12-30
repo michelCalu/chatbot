@@ -65,24 +65,6 @@ regle([entre,5],
                         lvins_prix_min_max(Min,Max,Lvins),
                         rep_lvins_min_max(Lvins,Reponse).
 
-regle([entre,5],
-      [[1, [_, X, et, Y ], 0, Reponse]], Question):-
-                        match(Question, [_,entre, X, et, Y ]),
-                        not(is_number(X)),!,
-                        Reponse=([['le prix minimum n est pas un nombre']]).
-
-regle([entre,5],
-      [[1, [_, X, et, Y ], 0, Reponse]], Question):-
-                        match(Question, [_,entre, X, et, Y ]),
-                        not(is_number(Y)),!,
-                        Reponse=([['le prix maximum n est pas un nombre']]).
-
-
-regle([cher,9],
-      [[1, [_,le,plus,cher], 0, Reponse]], Question):-
-                        match(Question, [_,le,plus,cher]),
-                        vin_prix_max(Vin),
-                        rep_lvins([Vin],Reponse).
 
 regle([cher,9],
       [[1, [_,le,moins,cher], 0, Reponse]], Question):-
@@ -98,13 +80,37 @@ regle([moins,5],
                         vins_moins_de_max(PrixMax, LVins),
                         rep_lvins(LVins,Reponse).
 
-regle([plus,5],
+regle([plus,5],       %bug: pq vins_plus_de_min(10,L) donne une liste non finie??? alors que vins_moins_de_max(PrixMax, LVins) est OK
       [[1, [_,plus,de,PrixMin], 0, Reponse]], Question):-
                         match(Question, [_,plus,de,PrixMin]),
                         is_number(PrixMin),
                         vins_plus_de_min(PrixMin, Lvins),
                         rep_lvins(LVins,Reponse).
 
+regle([entre,5],
+      [[1, [_, X, et, Y ], 0, Reponse]], Question):-
+                        match(Question, [_,entre, X, et, Y ]),
+                        not(is_number(X)),!,
+                        Reponse=([['le prix minimum n est pas un nombre']]).
+
+regle([entre,5],
+      [[1, [_, X, et, Y ], 0, Reponse]], Question):-
+                        match(Question, [_,entre, X, et, Y ]),
+                        not(is_number(Y)),!,
+                        Reponse=([['le prix maximum n est pas un nombre']]).
+
+
+regle([moins,9],
+      [[1, [_,moins,de,PrixMax], 0, Reponse]], Question):-
+                        match(Question, [_,moins,de,PrixMax]),
+                        not(is_number(PrixMax)),!,
+                        Reponse=([['le prix donne n est pas un nombre']]).
+
+regle([plus,9],
+      [[1, [_,plus,de,PrixMin], 0, Reponse]], Question):-
+                        match(Question, [_,plus,de,PrixMin]),
+                        not(is_number(PrixMin)),!,
+                        Reponse=([['le prix donne n est pas un nombre']]).
 
 /***************************************************************************/
 % vins_moins_de_max(Max, Lvins)
@@ -118,11 +124,12 @@ prix_moins_de_max(Vin,P,Max) :-
       P =< Max.
 
 vins_plus_de_min(Min,Lvins) :-
-      findall( (Vin,P) , prix_plus_de_min(Vin,P,Min), Lvins ).
+      findall( (Vin) , prix_plus_de_min(Vin,P,Min), Lvins ).
 
 prix_plus_de_min(Vin,P,Min) :-
       prix(Vin,P),
-      P >= Min.
+      P > Min.
+
 
 /***************************************************************************/
 % vin_prix_max(Vin)
