@@ -4,7 +4,7 @@
 %     out: creates a fact predicat(vin, input)
 %
 learn(Vin, Pred) :-
-    print('que pouvez vous nous dire de ce vin:' ),
+    writeln('voulez vous partager votre experience avec ce vin?'),
     lire_question(Input),
     list_to_phrase(Input, Contenu),
     add_fact(Pred, Vin, Contenu).
