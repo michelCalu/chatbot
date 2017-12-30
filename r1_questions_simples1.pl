@@ -33,13 +33,13 @@ regle([bouche,5],[
                       get_vin(Question, ID),
                       bouche(ID,Reponse).
 
+
 regle([bouche,5],[
       	[1, [_],0 , Reponse ]], Question):-
                     get_vin(Question, ID),
                     not(bouche(ID,_)),
                     writeln('nous n avons pas encore cette information.'),
-                    writeln('voulez vous partager votre experience avec ce vin?'),
-                    learn(ID,bouche),
+                    learn(ID,bouche_dyn),
                     Reponse = [['merci pour votre collaboration.']].
 
 regle([bouche,5],[
