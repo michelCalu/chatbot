@@ -90,3 +90,19 @@ choix(Liste,Base,Lg,Resultat) :-
     Newmi is Mi+1,
     choix(Liste,Newmi,Newlg,Newresultat),
     append(Newresultat,[X],Resultat).
+
+% identifie une sous liste dans une liste
+prefix(X, L) :- append(X, _, L).
+suffix(X, L) :- append(_, X, L).
+sublist(X, L) :- suffix(S, L), prefix(X, S).
+
+/***************************************************************************/
+% is_number(X)
+%     return true if X is an integer, or a list of 1 integer, else false.
+%
+is_number(X):-
+      is_list(X),
+      nth0(0,X,ValueX),
+      number(ValueX).
+is_number(X):-
+      number(X).

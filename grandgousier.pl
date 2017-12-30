@@ -6,6 +6,8 @@
 :- [r3_questions_accompagnement].
 :- [util_conversion].
 :- [util_liste_mots].
+:- [util_recherche].
+:- [util_affichage].
 :- [learning].
 :- dynamic bouche_dyn/2.
 :- dynamic nez_dyn/2.

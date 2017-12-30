@@ -10,32 +10,6 @@
 % Quel plat pour accompagner du [Vin]                    OK
 %----------------------------------------------------------
 
-% Trouve un plat dans une liste de mots
-get_plat(L_mots, Plat) :-
-  sublist([Plat], L_mots),
-  accompagnement(_, Plat).
-
-% Trouve une liste L de vins pouvant accompagner un plat
-get_vin_acc(Plat,  L) :-
-     findall( ID, accompagnement(ID, Plat), L).
-
-% Trouve une liste L d'id de vins pouvant accompagner un plat.
-get_plats(ID,  L) :-
-     findall( Plat, accompagnement(ID, Plat), L).
-
-%--------------------------------------------------------------------
-% Prend une liste d'id de vins, et le formate en plusieurs lignes
-% sous la forme "Le nom_du_vin a prix_du_vin euros \n"
-%--------------------------------------------------------------------
-
-format_vins([],_).
-format_vins([H|T],Sortie) :-
-  format_vins(T,Newsortie),
-  nom(H,Nom),
-  append(['Le'],Nom,L1),
-  prix(H,Prix),
-  append(L1,['a',Prix,'euros','\n'],L2),
-  append(Newsortie,L2,Sortie).
 /*
 partie_liste(Liste, Newliste) :-
   length(Liste,Nb),
