@@ -46,3 +46,9 @@ rep_litems([ID|L], [Irep|Ll]) :-
    prix(H,Prix),
    append(L1,['a',Prix,'euros','\n'],L2),
    append(Newsortie,L2,Sortie).
+
+% Prend une liste de plats, et retourne une liste où ils sont séparés par des virgules
+format_plats([],_).
+format_plats([H|T],Sortie) :-
+  format_plats(T,Newsortie),
+  append(Newsortie,[H,','],Sortie).

@@ -39,13 +39,6 @@ calcule(Nb,Mi,Lg) :-
    %write('Augmente x'),writeln(X),
    nb_setval(depart,X).
 
-
-% Prend une liste de plats, et retourne une liste où ils sont séparés par des virgules
-format_plats([],_).
-format_plats([H|T],Sortie) :-
-   format_plats(T,Newsortie),
-   append(Newsortie,[H,','],Sortie).
-
 % Quel vin accompagne du brie?
 regle([accompagner,8],[
                 [1, [_],0 , Reponse ]], Question):-
