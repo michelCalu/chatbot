@@ -3,8 +3,7 @@ test_programme(L):-
 
 incorrect(Q):-
       question_valide(Q),
-      simplify(Q,Qsimplifiee),
-      produire_reponse(Qsimplifiee, Reponse),
+      produire_reponse(Q, Reponse),
       not(rep_valide(Reponse)).
 
 rep_valide(R):- not(notfound(_,R)),

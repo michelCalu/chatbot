@@ -4,11 +4,11 @@
 :- [r1_questions_simples1].
 :- [r2_questions_simples2].
 :- [r3_questions_accompagnement].
+:- [r5_learning].
 :- [util_conversion].
 :- [util_liste_mots].
 :- [util_recherche].
 :- [util_affichage].
-:- [learning].
 :- dynamic bouche_dyn/2.
 :- dynamic nez_dyn/2.
 
@@ -25,7 +25,8 @@
 
 
 produire_reponse(Q,Reponse) :-
-         trouver_motcle(Q,MotsCle, 0),
+         simplify(Q,Q_Simplifiee),
+         trouver_motcle(Q_Simplifiee,MotsCle, 0),
          trier_motcle(MotsCle,TriMotsCle),
          !,
          print('DEBUG mots trouves:'),writeln(TriMotsCle),        % debug
@@ -147,8 +148,7 @@ grandgousier :-
    repeat,
       write('Vous : '),
       lire_question(L_Mots),
-      simplify(L_Mots,L_Mots_Simpl),
-      produire_reponse(L_Mots_Simpl,L_ligne_reponse),
+      produire_reponse(L_Mots,L_ligne_reponse),
       ecrire_reponse(L_ligne_reponse),
       nb_setval(old_question,L_Mots_Simpl),
    fin(L_Mots), !.
