@@ -28,8 +28,8 @@ regle([entre,5],
                         is_number(X),
                         is_number(Y),
                         sort(0,@=<,[X,Y],[Min,Max]),
-                        lvins_prix_min_max(Min,Max,Lvins),
-                        rep_lvins_min_max(Lvins,Reponse).
+                        vins_prix_min_max(Min,Max,LVins),
+                        rep_lvins(LVins,Reponse).
 
 regle([cher,9],
       [[1, [_,le,moins,_], 0, Reponse]], Question):-
