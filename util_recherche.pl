@@ -74,7 +74,7 @@ prix_vin_min_max(Vin,P,Min,Max) :-
 
 % Trouve un plat dans une liste de mots
 get_plat(L_mots, Plat) :-
-  sublist([Plat], L_mots),
+  sublist(Plat, L_mots),
   accompagnement(_, Plat).
 
 % Trouve une liste L de vins pouvant accompagner un plat

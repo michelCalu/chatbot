@@ -226,113 +226,113 @@ temperature(ventoux,15).
 temperature(lirac,15).
 temperature(hermitage,17).
 
-accompagnement(beaujolais_nouveau,'tomate mozzarella').
-accompagnement(beaujolais_nouveau,charcuterie).
-accompagnement(beaujolais_nouveau,camembert).
-accompagnement(beaujolais_nouveau,brie).
-accompagnement(beaujolais_nouveau,omelette).
-accompagnement(beaujolais_nouveau,'chicon au gratin').
-accompagnement(beaujolais_nouveau,barbecue).
-accompagnement(chiroubles,charcuterie).
-accompagnement(chiroubles,volaille).
+accompagnement(beaujolais_nouveau,[tomate,mozzarella]).
+accompagnement(beaujolais_nouveau,[charcuterie]).
+accompagnement(beaujolais_nouveau,[camembert]).
+accompagnement(beaujolais_nouveau,[brie]).
+accompagnement(beaujolais_nouveau,[omelette]).
+accompagnement(beaujolais_nouveau,[chicon,au,gratin]).
+accompagnement(beaujolais_nouveau,[barbecue]).
+accompagnement(chiroubles,[charcuterie]).
+accompagnement(chiroubles,[volaille]).
 accompagnement(chiroubles,waterzooi).
-accompagnement(chiroubles,'blanquette de veau').
-accompagnement(chiroubles,'fondue savoyarde').
-accompagnement(chiroubles,pizza).
-accompagnement(chiroubles,asperge).
-accompagnement(chiroubles,salade).
-accompagnement(saint_amour,'tarte salee').
-accompagnement(saint_amour,charcuterie).
-accompagnement(saint_amour,'viande blanche').
-accompagnement(saint_amour,'fondue savoyarde').
-accompagnement(saint_amour,'plat asiatique').
-accompagnement(saint_amour,'viande parfumee').
-accompagnement(chateau_perrouquet_graves,'tarte salee').
-accompagnement(chateau_perrouquet_graves,tapas).
-accompagnement(chateau_perrouquet_graves,magret).
-accompagnement(chateau_perrouquet_graves,'dinde farcie').
-accompagnement(chateau_perrouquet_graves,'dinde rotie').
-accompagnement(chateau_perrouquet_graves,'poulet roti').
-accompagnement(chateau_perrouquet_graves,'viande rouge').
-accompagnement(chateau_perrouquet_graves,'carre d agneau').
-accompagnement(chateau_perrouquet_graves,steak).
-accompagnement(chateau_perrouquet_graves,entrecote).
-accompagnement(chateau_perrouquet_graves,rosbeef).
-accompagnement(chateau_perrouquet_graves,veau).
-accompagnement(chateau_perrouquet_graves,'ris de veau').
-accompagnement(chateau_perrouquet_graves,porc).
-accompagnement(sauvignon_d_aquitaine,crevette).
-accompagnement(sauvignon_d_aquitaine,moule).
-accompagnement(sauvignon_d_aquitaine,poisson).
-accompagnement(sauvignon_d_aquitaine,truite).
-accompagnement(sauvignon_d_aquitaine,sandre).
-accompagnement(sauvignon_d_aquitaine,'fromage de chevre').
-accompagnement(sauvignon_d_aquitaine,raclette).
-accompagnement(sauvignon_d_aquitaine,choucroute).
-accompagnement(sauvignon_d_aquitaine,aperitif).
-accompagnement(saint_romain,'saint jacques').
-accompagnement(saint_romain,'poissons poche').
-accompagnement(saint_romain,'poissons vapeur').
-accompagnement(saint_romain,'poisson papillotte').
-accompagnement(saint_romain,cabillaud).
-accompagnement(saint_romain,volaille).
-accompagnement(saint_romain,poisson).
-accompagnement(saint_romain,crustace).
-accompagnement(pouilly_vinzelles,crustace).
-accompagnement(pouilly_vinzelles,gambas).
-accompagnement(pouilly_vinzelles,homard).
-accompagnement(pouilly_vinzelles,langouste).
-accompagnement(pouilly_vinzelles,'saint jacques').
-accompagnement(pouilly_vinzelles,tourteau).
-accompagnement(pouilly_vinzelles,poisson).
-accompagnement(pouilly_vinzelles,'ris de veau').
-accompagnement(pouilly_vinzelles,'tomate farcie').
-accompagnement(marsannay,lotte).
-accompagnement(marsannay,turbot).
-accompagnement(marsannay,'poulet fermier').
-accompagnement(marsannay,'viande blanche').
-accompagnement(marsannay,gibier).
-accompagnement(marsannay,crepes).
-accompagnement(cheverny,coquillage).
-accompagnement(cheverny,poisson).
-accompagnement(sancerre_blanc,'entree froide').
-accompagnement(sancerre_blanc,'saumon fume').
-accompagnement(sancerre_blanc,'terrine de poissons').
-accompagnement(sancerre_blanc,salade).
-accompagnement(sancerre_blanc,'fruits de mer').
-accompagnement(sancerre_blanc,gambas).
-accompagnement(sancerre_blanc,huitres).
-accompagnement(sancerre_blanc,saumon).
-accompagnement(sancerre_blanc,'fromage frais').
-accompagnement(sancerre_blanc,'fromage de chevre').
-accompagnement(sancerre_blanc,salades).
-accompagnement(sancerre_blanc,'tomate crevette').
-accompagnement(condrieu,gambas).
-accompagnement(condrieu,homard).
-accompagnement(condrieu,langouste).
-accompagnement(condrieu,'saint jacques').
-accompagnement(condrieu,'poisson').
-accompagnement(condrieu,thon).
-accompagnement(condrieu,espadon).
-accompagnement(condrieu,'poissons en sauce').
-accompagnement(condrieu,volaille).
-accompagnement(condrieu,'preparations italiennes').
-accompagnement(condrieu,asperges).
-accompagnement(laudun,'foie gras').
-accompagnement(laudun,'melon jambon').
-accompagnement(laudun,gambas).
-accompagnement(laudun,poissons).
-accompagnement(laudun,'poisson au four').
-accompagnement(laudun,turbot).
-accompagnement(laudun,volaille).
-accompagnement(laudun,'ris de veau').
-accompagnement(laudun,'preparations italiennes').
-accompagnement(laudun,paella).
-accompagnement(laudun,asperges).
-accompagnement(laudun,aperitif).
-accompagnement(hermitage,'viande rouges').
-accompagnement(hermitage,tournedos).
-accompagnement(hermitage,gibier).
+accompagnement(chiroubles,[blanquette,de,veau]).
+accompagnement(chiroubles,[fondue,savoyarde]).
+accompagnement(chiroubles,[pizza]).
+accompagnement(chiroubles,[asperge]).
+accompagnement(chiroubles,[salade]).
+accompagnement(saint_amour,[tarte,salee]).
+accompagnement(saint_amour,[charcuterie]).
+accompagnement(saint_amour,[viande,blanche]).
+accompagnement(saint_amour,[fondue,savoyarde]).
+accompagnement(saint_amour,[plat,asiatique]).
+accompagnement(saint_amour,[viande,parfumee]).
+accompagnement(chateau_perrouquet_graves,[tarte,salee]).
+accompagnement(chateau_perrouquet_graves,[tapas]).
+accompagnement(chateau_perrouquet_graves,[magret]).
+accompagnement(chateau_perrouquet_graves,[dinde,farcie]).
+accompagnement(chateau_perrouquet_graves,[dinde,rotie]).
+accompagnement(chateau_perrouquet_graves,[poulet,roti]).
+accompagnement(chateau_perrouquet_graves,[viande,rouge]).
+accompagnement(chateau_perrouquet_graves,[carre,d,agneau]).
+accompagnement(chateau_perrouquet_graves,[steak]).
+accompagnement(chateau_perrouquet_graves,[entrecote]).
+accompagnement(chateau_perrouquet_graves,[rosbeef]).
+accompagnement(chateau_perrouquet_graves,[veau]).
+accompagnement(chateau_perrouquet_graves,[ris,de,veau]).
+accompagnement(chateau_perrouquet_graves,[porc]).
+accompagnement(sauvignon_d_aquitaine,[crevette]).
+accompagnement(sauvignon_d_aquitaine,[moule]).
+accompagnement(sauvignon_d_aquitaine,[poisson]).
+accompagnement(sauvignon_d_aquitaine,[truite]).
+accompagnement(sauvignon_d_aquitaine,[sandre]).
+accompagnement(sauvignon_d_aquitaine,[fromage,de,chevre]).
+accompagnement(sauvignon_d_aquitaine,[raclette]).
+accompagnement(sauvignon_d_aquitaine,[choucroute]).
+accompagnement(sauvignon_d_aquitaine,[aperitif]).
+accompagnement(saint_romain,[saint,jacques]).
+accompagnement(saint_romain,[poissons,poche]).
+accompagnement(saint_romain,[poissons,vapeur]).
+accompagnement(saint_romain,[poisson,papillotte]).
+accompagnement(saint_romain,[cabillaud]).
+accompagnement(saint_romain,[volaille]).
+accompagnement(saint_romain,[poisson]).
+accompagnement(saint_romain,[crustace]).
+accompagnement(pouilly_vinzelles,[crustace]).
+accompagnement(pouilly_vinzelles,[gambas]).
+accompagnement(pouilly_vinzelles,[homard]).
+accompagnement(pouilly_vinzelles,[langouste]).
+accompagnement(pouilly_vinzelles,[saint,jacques]).
+accompagnement(pouilly_vinzelles,[tourteau]).
+accompagnement(pouilly_vinzelles,[poisson]).
+accompagnement(pouilly_vinzelles,[ris,de,veau]).
+accompagnement(pouilly_vinzelles,[tomate,farcie]).
+accompagnement(marsannay,[lotte]).
+accompagnement(marsannay,[turbot]).
+accompagnement(marsannay,[poulet,fermier]).
+accompagnement(marsannay,[viande,blanche]).
+accompagnement(marsannay,[gibier]).
+accompagnement(marsannay,[crepes]).
+accompagnement(cheverny,[coquillage]).
+accompagnement(cheverny,[poisson]).
+accompagnement(sancerre_blanc,[entree,froide]).
+accompagnement(sancerre_blanc,[saumon,fume]).
+accompagnement(sancerre_blanc,[terrine,de,poissons]).
+accompagnement(sancerre_blanc,[salade]).
+accompagnement(sancerre_blanc,[fruits,de,mer]).
+accompagnement(sancerre_blanc,[gambas]).
+accompagnement(sancerre_blanc,[huitres]).
+accompagnement(sancerre_blanc,[saumon]).
+accompagnement(sancerre_blanc,[fromage,frais]).
+accompagnement(sancerre_blanc,[fromage,de,chevre]).
+accompagnement(sancerre_blanc,[salades]).
+accompagnement(sancerre_blanc,[tomate,crevette]).
+accompagnement(condrieu,[gambas]).
+accompagnement(condrieu,[homard]).
+accompagnement(condrieu,[langouste]).
+accompagnement(condrieu,[saint,jacques]).
+accompagnement(condrieu,[poisson]).
+accompagnement(condrieu,[thon]).
+accompagnement(condrieu,[espadon]).
+accompagnement(condrieu,[poissons,en,sauce]).
+accompagnement(condrieu,[volaille]).
+accompagnement(condrieu,[preparations,italiennes]).
+accompagnement(condrieu,[asperges]).
+accompagnement(laudun,[foie,gras]).
+accompagnement(laudun,[melon,jambon]).
+accompagnement(laudun,[gambas]).
+accompagnement(laudun,[poissons]).
+accompagnement(laudun,[poisson,au,four]).
+accompagnement(laudun,[turbot]).
+accompagnement(laudun,[volaille]).
+accompagnement(laudun,[ris,de,veau]).
+accompagnement(laudun,[preparations,italiennes]).
+accompagnement(laudun,[paella]).
+accompagnement(laudun,[asperges]).
+accompagnement(laudun,[aperitif]).
+accompagnement(hermitage,[viande,rouges]).
+accompagnement(hermitage,[tournedos]).
+accompagnement(hermitage,[gibier]).
 
 nez(beaujolais_nouveau,[['nez gourmand, aux aromes dominants de fruits rouges'],['(cerises, framboises, fraises) et de pates de fruits (cuberdon)']]).
 nez(chiroubles,[['nez tendrement parfume, domine par les fruits rouges'],['(groseilles, fraises) et les epices']]).
