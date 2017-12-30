@@ -9,14 +9,17 @@ get_region(L_mots, Region) :-
   region(_, Region).
 
 % récupère une liste des vins d'une région donnée
-get_vin_de(Region,  L) :-
+get_vins_de_region(Region,  L) :-
      findall( ID, region(ID, Region), L).
 
 % récupère une liste d'ID à partir d'une liste de noms de vins
-get_nom_de([], []).
-get_nom_de([ID|T], [Nom|Rest]) :-
+get_ids_noms([], []).
+get_ids_noms([ID|T], [Nom|Rest]) :-
       nom(ID,Nom),
-      get_nom_de(T,Rest).
+      get_ids_noms(T,Rest).
+
+
+
 
 /***************************************************************************/
 % vins_moins_de_max(Max, Lvins)
@@ -29,13 +32,17 @@ prix_moins_de_max(Vin,P,Max) :-
       prix(Vin,P),
       P =< Max.
 
+/***************************************************************************/
+% prix_plus_de_min(Min, Lvins)
+%     out: Lvins = liste des vins dont le prix est >= Min
+%
+
 vins_plus_de_min(Min,Lvins) :-
       findall( (Vin) , prix_plus_de_min(Vin,P,Min), Lvins ).
 
 prix_plus_de_min(Vin,P,Min) :-
       prix(Vin,P),
       P >= Min.
-
 
 /***************************************************************************/
 % vin_prix_max(Vin)
@@ -51,7 +58,6 @@ plus_cher(X):- prix(X, PrixX), prix(Y, PrixY), Y\=X, PrixX < PrixY.
 vin_prix_min(X):- prix(X, _), not( moins_cher(X)), !.
 moins_cher(X):- prix(X, PrixX), prix(Y, PrixY), Y\=X, PrixX > PrixY.
 
-
 /***************************************************************************/
 % lvins_prix_min_max(Min, Max, Result)
 %     out: Liste de tous les vins de Min<=Prix<=Max
@@ -62,6 +68,9 @@ lvins_prix_min_max(Min,Max,Lvins) :-
 prix_vin_min_max(Vin,P,Min,Max) :-
       prix(Vin,P),
       Min =< P, P =< Max.
+
+
+
 
 % Trouve un plat dans une liste de mots
 get_plat(L_mots, Plat) :-

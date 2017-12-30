@@ -1,12 +1,26 @@
 :- multifile regle/3.
 
+% questions région  (motcle[#appellation, #region, #ou, #origine])
+% Quelle est l’appellation du [vin] ?           OK
+% De quelle région provient le [vin] ?          OK
+% D’où provient le [vin] ?                      OK
+% De quelle origine est le [vin] ?              OK
+
 regle([region,5],[
         	[1, [_],0 , Reponse ]], Question):-
                       get_region(Question, Region),
                       !,
-                      get_vin_de(Region, List),
-                      get_nom_de(List, Noms),
+                      get_vins_de_region(Region, List),
+                      get_ids_noms(List, Noms),
                       rep_lvins(List,Reponse).
+
+% questions prix                  ===========  OK =============
+%
+% Auriez-vous des vins entre [prix_min] et [prix_max] ?     OK
+% Quel est votre vin le plus cher ?                         OK
+% Quel est votre vin le moins cher ?                        OK
+% Auriez-vous des vins à moins de [prix_max] ?              OK
+% Auriez-vous des vins à plus de [prix_min] ?               OK
 
 regle([entre,5],
       [[1, [_, X, et, Y ], 0, Reponse]], Question):-
@@ -17,13 +31,17 @@ regle([entre,5],
                         lvins_prix_min_max(Min,Max,Lvins),
                         rep_lvins_min_max(Lvins,Reponse).
 
-
 regle([cher,9],
-      [[1, [_,le,moins,cher], 0, Reponse]], Question):-
-                        match(Question, [_,le,moins,cher]),
+      [[1, [_,le,moins,_], 0, Reponse]], Question):-
+                        match(Question, [_,le,moins,_]),
                         vin_prix_min(Vin),
                         rep_lvins([Vin],Reponse).
 
+regle([cher,9],
+      [[1, [_,le,plus,_], 0, Reponse]], Question):-
+                        match(Question, [_,le,plus,_]),
+                        vin_prix_max(Vin),
+                        rep_lvins([Vin],Reponse).
 
 regle([moins,5],
       [[1, [_,moins,de,PrixMax], 0, Reponse]], Question):-
