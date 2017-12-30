@@ -3,10 +3,12 @@
 :- [r0_autres_regles].
 :- [r1_questions_simples1].
 :- [r2_questions_simples2].
-:- [r2_questions_accompagnement].
+:- [r3_questions_accompagnement].
 :- [conversion_util].
 :- [liste_mots_util].
 :- [learning].
+:- dynamic bouche_dyn/2.
+:- dynamic nez_dyn/2.
 
 /* --------------------------------------------------------------------- */
 /*                                                                       */
@@ -22,7 +24,7 @@
 
 produire_reponse(Q,Reponse) :-
          trouver_motcle(Q,MotsCle, 0),
-         sort(2,@>=,MotsCle,TriMotsCle),
+         trier_motcle(MotsCle,TriMotsCle),
          !,
          print('DEBUG mots trouves:'),writeln(TriMotsCle),        % debug
          lister_regles(TriMotsCle, Q, Reponse).
@@ -52,9 +54,8 @@ trouver_motcle([H|T],R, Nb):-
 % trier_motcle(Liste, ListeTriée)
 %     trie une liste de mots-clé par poids
 %
-%trier_motcle([],[]).
-trier_motcle(L,Res):-
-    sort(2,@=<,L,Res).
+trier_motcle(Liste,ListeTriee):-
+    sort(2,@>=,Liste,ListeTriee).
 
 /**************************************************************************/
 % lister_regles(LmotsTriés, Question, Réponse)
@@ -139,6 +140,8 @@ grandgousier :-
    nl, nl,
    nb_setval(old_question,[]),
    nb_setval(depart,1),
+   retractall( bouche_dyn(X,Y) ),           %Debug: clears learned predicates on startup
+   retractall( nez_dyn(X,Y)),
    repeat,
       write('Vous : '),
       lire_question(L_Mots),
