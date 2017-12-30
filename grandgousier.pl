@@ -4,8 +4,8 @@
 :- [r1_questions_simples1].
 :- [r2_questions_simples2].
 :- [r3_questions_accompagnement].
-:- [conversion_util].
-:- [liste_mots_util].
+:- [util_conversion].
+:- [util_liste_mots].
 :- [learning].
 :- dynamic bouche_dyn/2.
 :- dynamic nez_dyn/2.
