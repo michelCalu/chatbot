@@ -22,12 +22,12 @@ rep_lvins([H|T], [ [ oui, '.', je, dispose, de ] | L]) :-
  % sous la forme "Le nom_du_vin a prix_du_vin euros \n"
  %--------------------------------------------------------------------
 
- format_vins([],_).
- format_vins([ID|T],Sortie) :-
-   format_vins(T,Newsortie),
-   id_vin_to_string(ID, String),
-   append(String,['\n'],String2),
-   append(Newsortie,String2,Sortie).
+format_vins([],_).
+format_vins([ID|T],Sortie) :-
+  format_vins(T,Newsortie),
+  id_vin_to_string(ID, String),
+  append(String,['\n'],String2),
+  append(Newsortie,String2,Sortie).
 
 % Prend une liste de plats, et retourne une liste où ils sont séparés par des virgules
 format_plats([],_).
