@@ -4,6 +4,7 @@
 :- [r1_questions_simples1].
 :- [r2_questions_simples2].
 :- [r3_questions_accompagnement].
+:- [r4_memorisation].
 :- [r5_learning].
 :- [util_conversion].
 :- [util_liste_mots].
@@ -43,7 +44,7 @@ produire_reponse(Q,Reponse) :-
 reset_debut(Liste) :-
     member([autre,6],Liste),!,
     writeln(Pas_reset).
-    
+
 reset_debut(_) :-
     nb_getval(memory,X),
     X<1.
@@ -183,7 +184,7 @@ memorise(Liste) :-
     nb_getval(memory,A),
     A>0,
     nb_setval(old_question,Liste).
-    
+
 memorise(_).
 
 
