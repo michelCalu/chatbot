@@ -11,27 +11,6 @@
 %----------------------------------------------------------
 
 
-partie_liste(Liste, Newliste) :-
-  length(Liste,Nb),
-  calcule(Nb,Mi,Lg),
-  choix(Liste,Mi,Lg,Newliste).
-
-% 2 est le nombre d'items affichés simultanément
-calcule(Nb,Mi,Lg) :-
-   affichage(Lignes),
-   nb_getval(depart,Mi),
-   (Mi+Lignes-1)>=Nb,
-   Lg is (Nb-Mi+1),
-   nb_setval(depart,1).
-
-calcule(Nb,Mi,Lg) :-
-   affichage(Lignes),
-   nb_getval(depart,Mi),
-   (Mi+Lignes-1)<Nb,
-   Lg is Lignes,
-   X is (Mi+Lignes),
-   nb_setval(depart,X).
-
 % Quel vin accompagne du brie?
 regle([accompagner,8],[
                 [1, [_],0 , Reponse ]], Question):-
