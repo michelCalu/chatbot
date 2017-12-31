@@ -187,6 +187,8 @@ read_atomics(ListOfAtomics) :-
 /*                                                                       */
 /* --------------------------------------------------------------------- */
 
+ecrire_reponse([]).
+
 ecrire_reponse(L) :-
    nl, write('GGS :'),
    ecrire_li_reponse(L,1,1).

@@ -29,8 +29,29 @@ produire_reponse(Q,Reponse) :-
          trouver_motcle(Q_Simplifiee,MotsCle, 0),
          trier_motcle(MotsCle,TriMotsCle),
          !,
+         reset_debut(TriMotsCle),
          print('DEBUG mots trouves:'),writeln(TriMotsCle),        % debug
          lister_regles(TriMotsCle, Q, Reponse).
+
+
+% reset_debut
+% si mot clé autre, ou si on est appelé depuis la regle "autre", on ne fait rien.
+% Sinon on reset le depart à 1
+% pour stopper la mémorisation du point de début de l'affichage d'une liste.
+%
+
+reset_debut(Liste) :-
+    member([autre,6],Liste),!,
+    writeln(Pas_reset).
+    
+reset_debut(_) :-
+    nb_getval(memory,X),
+    X<1.
+
+reset_debut(_) :-
+    nb_setval(depart,1),
+    writeln(reset).
+
 
 
 /***************************************************************************/
@@ -147,11 +168,23 @@ grandgousier :-
    retractall( nez_dyn(X,Y)),
    repeat,
       write('Vous : '),
+      nb_setval(memory,1),
       lire_question(L_Mots),
       produire_reponse(L_Mots,L_ligne_reponse),
       ecrire_reponse(L_ligne_reponse),
-      nb_setval(old_question,L_Mots_Simpl),
+      memorise(L_Mots),
    fin(L_Mots), !.
+
+% -------------------------------------------------------------------------
+% Si memory est à 1, on mémorise la question dans old_question
+% Si memory est à 0, on vient de la règle "autre", et on ne doit rien faire
+
+memorise(Liste) :-
+    nb_getval(memory,A),
+    A>0,
+    nb_setval(old_question,Liste).
+    
+memorise(_).
 
 
 /* --------------------------------------------------------------------- */

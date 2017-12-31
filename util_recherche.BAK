@@ -1,4 +1,4 @@
-﻿% récupère l'ID d'un vin à partir d'une liste de mots (typiquement une question)
+% récupère l'ID d'un vin à partir d'une liste de mots (typiquement une question)
 get_vin(L_mots, ID) :-
   sublist(Nom_Vin, L_mots),
   nom(ID, Nom_Vin).
