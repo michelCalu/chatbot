@@ -11,7 +11,6 @@ regle([region,5],[
                       get_region(Question, Region),
                       !,
                       get_vins_de_region(Region, List),
-                      %get_ids_noms(List, Noms),
                       set_liste_memo(List, Liste2),!,
                       rep_lvins(Liste2,Reponse).
 
@@ -36,14 +35,16 @@ regle([entre,5],
 regle([cher,9],
       [[1, [_,le,moins,_], 0, Reponse]], Question):-
                         match(Question, [_,le,moins,_]),
-                        vin_prix_min(Vin),
-                        rep_lvins([Vin],Reponse).
+                        vin_prix_min(ID_Vin),
+                        set_vin_memo(ID_Vin, prix),
+                        rep_lvins([ID_Vin],Reponse).
 
 regle([cher,9],
       [[1, [_,le,plus,_], 0, Reponse]], Question):-
                         match(Question, [_,le,plus,_]),
-                        vin_prix_max(Vin),
-                        rep_lvins([Vin],Reponse).
+                        vin_prix_max(ID_Vin),
+                        set_vin_memo(ID_Vin, prix),
+                        rep_lvins([ID_Vin],Reponse).
 
 regle([moins,5],
       [[1, [_,moins,de,PrixMax], 0, Reponse]], Question):-

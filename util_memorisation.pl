@@ -1,11 +1,13 @@
 % -------------------------------------------------------------------------
 % init liste_memo avec Liste moins les 3 premiers éléments qui sont renvoyer
 set_liste_memo(Liste, Liste) :-
+  %reset_vin_memo(),
   length(Liste, L),
   L =< 3,
   nb_setval(liste_memo, []).
 
 set_liste_memo([A,B,C|Rest], [A,B,C]) :-
+  %reset_vin_memo(),
   nb_setval(liste_memo, Rest).
 
 % récupère les 3 premiers éléments de la liste en mémo et met à jour
@@ -19,17 +21,22 @@ get_three_elem_memo([A,B,C]) :-
   nb_getval(liste_memo, [A,B,C|Rest]),
   nb_setval(liste_memo, Rest).
 
+reset_liste_memo() :-
+  nb_setval(liste_memo, []).
+
 % -------------------------------------------------------------------------
 % modifie vin_memo en retirant la propriété citée
 % ID_vin = identifiant vin
 % Propriete = propriété citée (dans [bouche,nez,region,prix,description])
 set_vin_memo(ID_Vin, Propriete_Citee) :-
+  %reset_liste_memo(),
   nb_getval(vin_memo, vin_prop(ID_Vin, Proprietes)),
   delete(Proprietes, Propriete_Citee, Proprietes_maj),
   nb_setval(vin_memo, vin_prop(ID_Vin, Proprietes_maj)).
 
 % modifie vin_memo en remettant la liste au départ et en retirant la propriété citée
 set_vin_memo(ID_Vin, Propriete_Citee) :-
+  %reset_liste_memo(),
   not(nb_getval(vin_memo, vin_prop(ID_Vin, _))),
   delete([bouche,nez,region,prix,description], Propriete_Citee, Proprietes),
   nb_setval(vin_memo, vin_prop(ID_Vin, Proprietes)).
