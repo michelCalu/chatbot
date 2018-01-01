@@ -47,3 +47,37 @@ reset_debut(_) :-
 reset_debut(_) :-
     nb_setval(depart,1),
     writeln(reset).
+
+% -------------------------------------------------------------------------
+% modifie vin_cite en retirant la propriété citée
+% ID_vin = identifiant vin
+% Propriete = propriété citée (dans [bouche,nez,region,prix,description])
+mod_vin_cite(ID_Vin, Propriete_Citee) :-
+  nb_getval(vin_cite, vin_prop(ID_Vin, Proprietes)),
+  delete(Proprietes, Propriete_Citee, Proprietes_maj),
+  nb_setval(vin_cite, vin_prop(ID_Vin, Proprietes_maj)).
+
+% modifie vin_cite en remettant la liste au départ et en retirant la propriété citée
+mod_vin_cite(ID_Vin, Propriete_Citee) :-
+  not(nb_getval(vin_cite, vin_prop(ID_Vin, _))),
+  delete([bouche,nez,region,prix,description], Propriete_Citee, Proprietes),
+  nb_setval(vin_cite, vin_prop(ID_Vin, Proprietes)).
+
+% récupère une propriete non citée ou une liste vide si plus rien
+get_propriete_non_citee([Propriete]) :-
+  nb_getval(vin_cite, vin_prop(_, [Propriete|_])).
+
+get_propriete_non_citee([]) :-
+  nb_getval(vin_cite, vin_prop(_, [])).
+
+% récupère l'ID du vin cité
+get_vin_cite(ID_Vin) :-
+  nb_getval(vin_cite, vin_prop(ID_Vin, _)).
+
+% remet à zéro la variable globale vin_cite
+reset_vin_cite() :-
+  nb_setval(vin_cite, vin_prop(empty,[])).
+
+% test si il y un vin cité valide
+pas_de_vin_cite() :-
+  nb_getval(vin_cite, vin_prop(empty, _)).

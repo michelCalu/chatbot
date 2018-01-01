@@ -143,6 +143,7 @@ grandgousier :-
    write('Bonjour, je suis Grandgousier, GGS pour les intimes,'), nl,
    write('conseiller en vin. En quoi puis-je vous etre utile ?'),
    nl, nl,
+   nb_setval(vin_cite, vin_prop(empty,[])),
    nb_setval(old_question,[]),
    nb_setval(depart,1),
    retractall( bouche_dyn(X,Y) ),           %Debug: clears learned predicates on startup

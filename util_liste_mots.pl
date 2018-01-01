@@ -48,6 +48,8 @@ sr([irait|X],[accompagner|Y],X,Y).
 sr([cuisiner|X],[accompagner|Y],X,Y).
 sr([accompagne|X],[accompagner|Y],X,Y).
 
+sr([autres|X],[autre|Y],X,Y).
+
 /***********************************************/
 % transformations fautes d'orthographe, typo, pluriel...
 remplace(vins,vin).
@@ -71,6 +73,7 @@ mclef(cher,9).
 mclef(plat,8).
 mclef(accompagner,8).
 mclef(autre,6).
+mclef(davantage,5).
 
 %------------------------------------------------------------------------
 %  Post : Resultat contient une sous liste de Liste
