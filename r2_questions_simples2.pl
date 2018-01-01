@@ -12,7 +12,7 @@ regle([region,5],[
                       !,
                       get_vins_de_region(Region, List),
                       %get_ids_noms(List, Noms),
-                      partie_liste(List, Liste2),!,
+                      set_liste_memo(List, Liste2),!,
                       rep_lvins(Liste2,Reponse).
 
 % questions prix                  ===========  OK =============
@@ -30,7 +30,7 @@ regle([entre,5],
                         is_number(Y),
                         sort(0,@=<,[X,Y],[Min,Max]),
                         vins_prix_min_max(Min,Max,LVins),
-                        partie_liste(LVins, Liste2),!,
+                        set_liste_memo(LVins, Liste2),!,
                         rep_lvins(Liste2,Reponse).
 
 regle([cher,9],
@@ -50,7 +50,7 @@ regle([moins,5],
                         match(Question, [_,moins,de,PrixMax]),
                         is_number(PrixMax),
                         vins_moins_de_max(PrixMax, LVins),
-                        partie_liste(LVins, Liste2),!,
+                        set_liste_memo(LVins, Liste2),!,
                         rep_lvins(Liste2,Reponse).
 
 regle([plus,5],
@@ -58,7 +58,7 @@ regle([plus,5],
                         match(Question, [_,plus,de,PrixMin]),
                         is_number(PrixMin),
                         vins_plus_de_min(PrixMin, LVins),
-                        partie_liste(LVins, Liste2),!,
+                        set_liste_memo(LVins, Liste2),!,
                         rep_lvins(Liste2,Reponse).
 
 regle([entre,5],

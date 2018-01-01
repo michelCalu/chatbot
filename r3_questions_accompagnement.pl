@@ -16,7 +16,7 @@ regle([accompagner,8],[
                 [1, [_],0 , Reponse ]], Question):-
                       get_plat(Question, Plat),!,
                       get_vin_acc(Plat, List),!,
-                      partie_liste(List, Liste2),!,
+                      set_liste_memo(List, Liste2),!,
                       format_vins(Liste2, Listevins),!,
                       Reponse=([['pour accompagner du ',Plat,' je vous suggere '],Listevins]).
 

@@ -22,7 +22,7 @@
 regle([bouche,5],[
         	[1, [_],0 , Reponse ]], Question):-
                       get_vin(Question, ID),
-                      mod_vin_cite(ID, bouche),
+                      set_vin_memo(ID, bouche),
                       bouche(ID,Reponse).
 
 
@@ -50,7 +50,7 @@ regle([bouche,5],[
 regle([nez,5],[
         	[1, [_],0 , Reponse ]], Question):-
                       get_vin(Question, ID),
-                      mod_vin_cite(ID, nez),
+                      set_vin_memo(ID, nez),
                       nez(ID,Reponse).
 
 regle([nez,5],[
@@ -69,7 +69,7 @@ regle([region,5],[
                       get_vin(Question, ID),
                       !,
                       region(ID,Region),
-                      mod_vin_cite(ID, region),
+                      set_vin_memo(ID, region),
                       Reponse=([['c est un vin de '],[Region]]).
 
 regle([region,5],[
@@ -90,7 +90,7 @@ regle([prix,5],[
                       get_vin(Question, ID),
                       prix(ID,Prix),
                       nom(ID,Nom),
-                      mod_vin_cite(ID, prix),
+                      set_vin_memo(ID, prix),
                       Rep=([['le prix du'], Nom, ['est de '],[Prix],['Eur']]),
                       flatten(Rep,Rep2),                          %TO DO flatten pour éviter les \nl à l'affichage entre chaque sous liste
                       Reponse=([Rep2]).
@@ -110,7 +110,7 @@ regle([prix,5],[
 regle([description,5],[
         	[1, [_],0 , Reponse ]], Question):-
                       get_vin(Question, ID),
-                      mod_vin_cite(ID, description),
+                      set_vin_memo(ID, description),
                       description(ID, Reponse).
 
 regle([description,5],[

@@ -31,7 +31,6 @@ produire_reponse(Q,Reponse) :-
          trouver_motcle(Q_Simplifiee,MotsCle, 0),
          trier_motcle(MotsCle,TriMotsCle),
          !,
-         reset_debut(TriMotsCle),
          print('DEBUG mots trouves:'),writeln(TriMotsCle),        % debug
          lister_regles(TriMotsCle, Q, Reponse).
 
@@ -143,18 +142,15 @@ grandgousier :-
    write('Bonjour, je suis Grandgousier, GGS pour les intimes,'), nl,
    write('conseiller en vin. En quoi puis-je vous etre utile ?'),
    nl, nl,
-   nb_setval(vin_cite, vin_prop(empty,[])),
-   nb_setval(old_question,[]),
-   nb_setval(depart,1),
+   nb_setval(vin_memo, vin_prop(empty,[])),
+   nb_setval(liste_memo, []),
    retractall( bouche_dyn(X,Y) ),           %Debug: clears learned predicates on startup
    retractall( nez_dyn(X,Y)),
    repeat,
       write('Vous : '),
-      nb_setval(memory,1),
       lire_question(L_Mots),
       produire_reponse(L_Mots,L_ligne_reponse),
       ecrire_reponse(L_ligne_reponse),
-      memorise(L_Mots),
    fin(L_Mots), !.
 
 

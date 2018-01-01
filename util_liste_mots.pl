@@ -49,6 +49,8 @@ sr([cuisiner|X],[accompagner|Y],X,Y).
 sr([accompagne|X],[accompagner|Y],X,Y).
 
 sr([autres|X],[autre|Y],X,Y).
+sr([dautre|X],[autre|Y],X,Y).
+sr([dautres|X],[autre|Y],X,Y).
 
 /***********************************************/
 % transformations fautes d'orthographe, typo, pluriel...
