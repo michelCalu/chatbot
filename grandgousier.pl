@@ -28,7 +28,7 @@
 
 produire_reponse(Q,Reponse) :-
          simplify(Q,Q_Simplifiee),
-         trouver_motcle(Q_Simplifiee,MotsCle, 0),
+         trouver_motcle(Q_Simplifiee,MotsCle),
          trier_motcle(MotsCle,TriMotsCle),
          !,
          print('DEBUG mots trouves:'),writeln(TriMotsCle),        % debug
@@ -39,25 +39,24 @@ produire_reponse(Q,Reponse) :-
 % trouver_motcle(Input, ListeDeMotsClé)
 %     récupère les [motclé,Poids] présents dans Input
 %     in: {mots d'Input}
-%     out: {[motclé1, poids1], [motclé2,poids2],...}
-%           ou {[unknown,99]} si pas de motclé
+%     out: {[motclé1, poids1], [motclé2,poids2],...,[notfound,1]}
 %
-%trouver_motcle([],[], X):- X>0.
 
-trouver_motcle([],[[notfound,1]], _).
+trouver_motcle([],[[notfound,1]]).
 
-trouver_motcle([H|T],[[H,P]|R], Nb):-
+trouver_motcle([H|T],[[H,P]|R]):-
             mclef(H,P),
-            NewNb is Nb + 1,
-            trouver_motcle(T,R, NewNb).
+            trouver_motcle(T,R).
 
-trouver_motcle([H|T],R, Nb):-
+trouver_motcle([H|T],R):-
             not(mclef(H,_)),
-            trouver_motcle(T,R, Nb).
+            trouver_motcle(T,R).
 
 /***************************************************************************/
-% trier_motcle(Liste, ListeTriée)
+% trier_motcle(Liste, ListeTriee)
 %     trie une liste de mots-clé par poids
+%     in: liste Liste de mots-clé avec leurs poids}
+%     out: liste triée ListeTriee par poids du plus grand au plus petit
 %
 trier_motcle(Liste,ListeTriee):-
     sort(2,@>=,Liste,ListeTriee).
@@ -68,10 +67,6 @@ trier_motcle(Liste,ListeTriee):-
 %           - unifie avec une règle de forme regle(motclé, [ID,Pattern,Count,Reponse], Question)
 %           - retourne Reponse si
 %                 - match(Question, Pattern) et conditions de la règle réussi(ssen)t
-%
-lister_regles([[notfound,99]], Question, Reponse):-
-       regle([notfound,99],[[ID,Pattern,Count,Reponse]], Question),
-       print('DEBUG: regle utilisee:'),writeln([notfound,99]).
 
 lister_regles([[M,_]|Rest],  Question, Reponse):-
        regle([M,_],[[ID,Pattern,Count,Reponse]], Question),
@@ -83,17 +78,13 @@ lister_regles([[M,_]|Rest],  Question, Reponse):-
 
 lister_regles([], _, _).
 
-
 /**********************************************************/
 % match(Input, Pattern)
-%     matches Input Vs a Pattern
-%     if pattern contains a Variable, Variable will hold matching words
+%     matche Input par rapport à un Pattern
+%     si un pattern contient une variable Variable, celle-ci contiendra les mots
+%     correspondants
 %     ex: match([a,b,c,d,e], [X,b,c,d,e]). X=[a], true.
-% group(Var, InputWords, NextWord, RestInputWords)
-%     in: le prochain terme à matcher est une Var
-%     out: tous les mots d'input jusqu'au prochain mot sont groupés dans Var
-%     ex: ex: match([a,b,c,d,e], [a,X,e]). X=[b,c,d], true.
-%
+
 match([], []):-!.
 
 match(Input, [Pattern]) :-
@@ -113,6 +104,12 @@ match(InputWords, [Var,NextWord|Rest]) :-
 match([NextInputWord|RestInput], [NextInputWord|RestPattern]) :-
       !,
       match(RestInput, RestPattern).
+
+/**********************************************************/
+% group(Var, InputWords, NextWord, RestInputWords)
+%     in: le prochain terme à matcher est une Var
+%     out: tous les mots d'input jusqu'au prochain mot sont groupés dans Var
+%     ex: ex: match([a,b,c,d,e], [a,X,e]). X=[b,c,d], true.%
 
 group([], [Nextw|Rest], Nextw, [Nextw|Rest] ):-
     !.
