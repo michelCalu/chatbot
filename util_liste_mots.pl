@@ -1,13 +1,30 @@
-﻿% simplify(+List,-Result)
-%   implements non-overlapping simplification
-%   simplifies List into Result
+/* --------------------------------------------------------------------- */
+/*                                                                       */
+/*                       UTILITAIRES MOTS-CLE                            */
+/*                        ET LISTES DE MOTS                              */
+/*                                                                       */
+/* --------------------------------------------------------------------- */
+
+/***********************************************/
+% simplifie une liste de mots pour identifier les régles applicables
+% format :
+%        simplify(+List,-Result)
+%        in : List est une liste de mot
+%        out : Result est le résultat de l'application des régles de simplifaction
+%              sur chaque élément de List, Result est également une liste de mots
+%
 
 simplify(List,Result) :- sr(List,Result,X,Y), !,
                          simplify(X,Y).
 simplify([W|Words],[W|NewWords]) :- simplify(Words,NewWords).
 simplify([],[]).
 
-% simplification rules
+/***********************************************/
+% règles de simplification
+% format :
+%         sr([Element|Reste],[ElementSimple|ResteSimple],Reste,ResteSimple)
+%         in : Element est le mot à remplacer
+%         out : ElementSimple est l'équivalent normalisé
 
 sr([attaque|X],[bouche|Y],X,Y).
 sr([longueur|X],[bouche|Y],X,Y).
@@ -53,21 +70,18 @@ sr([dautre|X],[autre|Y],X,Y).
 sr([dautres|X],[autre|Y],X,Y).
 
 /***********************************************/
-% transformations fautes d'orthographe, typo, pluriel...
-remplace(vins,vin).
-remplace(vni,vin).
-% TO DO
-%************************************************/
+% Mots-clé avec pondérations
+% format :
+%         mclef(Mot, Poids)
+%         nb : 1 seul motclef(mot, poids) par mot à reconnaitre
 
-% Mots-cle:
-% 1 seul motclef(mot, poids) par mot à reconnaitre
 mclef(bonjour,2).
 mclef(fin,2).
 mclef(bouche,10).
 mclef(nez,10).
 mclef(region,9).
 mclef(prix,7).
-mclef(description,9). % pondération moindre, permet de gérer les cas parler moi du nez de ...
+mclef(description,9).
 mclef(entre,10).
 mclef(moins,8).
 mclef(plus,8).
@@ -77,34 +91,19 @@ mclef(accompagner,8).
 mclef(autre,6).
 mclef(davantage,5).
 
-%------------------------------------------------------------------------
-%  Post : Resultat contient une sous liste de Liste
-%  composée de Lg éléments d'index Base, Base+1...
-%  Le premier élément est d'indice 1
-%  Si Lg est trop grand, le dernier élément sera renvoyé plusieurs fois
-%  Si base est trop grand, on prend le dernier élément
-%  choix ([a,b,c,d,e],2,3) retourne b,c,d
-%  ----------------------------------------------------------------------
-
-choix(_,_,0,_).
-choix(Liste,Base,Lg,Resultat) :-
-    length(Liste,Lgliste),
-    Mi is min(Base,Lgliste), %si base>longueur liste, on prend la longueur
-    nth1(Mi,Liste,X),
-    Newlg is Lg-1,
-    Newmi is Mi+1,
-    choix(Liste,Newmi,Newlg,Newresultat),
-    append(Newresultat,[X],Resultat).
-
+/***********************************************/
 % identifie une sous liste dans une liste
+% format : sublist(Sublist, List)
+% source : Learn Prolog Now !, chap. 6
+
 prefix(X, L) :- append(X, _, L).
 suffix(X, L) :- append(_, X, L).
 sublist(X, L) :- suffix(S, L), prefix(X, S).
 
-/***************************************************************************/
-% is_number(X)
-%     return true if X is an integer, or a list of 1 integer, else false.
-%
+/************************************************/
+% vérifie que X est un nombre ou une liste dont le premier élément est un nombre
+% format : is_number(ElementExaminé)
+
 is_number(X):-
       is_list(X),
       nth0(0,X,ValueX),
