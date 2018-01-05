@@ -1,4 +1,4 @@
-:- multifile regle/2.
+:- multifile regle/3.
 
 /***********************************************/
 % Série de règles.

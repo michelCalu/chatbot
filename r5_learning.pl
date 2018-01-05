@@ -1,7 +1,7 @@
 /***************************************************************************/
 % learn(Vin, Predicat)
-%     in: input from utilisateur
-%     out: creates a fact predicat(vin, input)
+%     in: input de l'utilisateur
+%     out: crée un fait predicat(vin, input)
 %
 learn(Vin, Pred) :-
     writeln('voulez vous partager votre experience avec ce vin?'),

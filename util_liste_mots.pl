@@ -66,7 +66,7 @@ mclef(fin,2).
 mclef(bouche,10).
 mclef(nez,10).
 mclef(region,9).
-mclef(prix,10).
+mclef(prix,7).
 mclef(description,9). % pondération moindre, permet de gérer les cas parler moi du nez de ...
 mclef(entre,10).
 mclef(moins,8).
