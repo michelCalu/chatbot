@@ -1,20 +1,35 @@
 :- multifile regle/2.
 
 /***********************************************/
-% règles diverses (réponses non relatives a un vin)
+% Série de règles.
+% Format:
+%     regle( [motclé,poids], [Id, [pattern de question], Compteur, [Réponse au pattern]], Question)
+%     in: Question posée
+%     out: retourne Reponse si:
+%           match  (pattern,  Question) ET (autres condition(s) réussie(s))
+%     Nb: poids et Compteur ne sont pas utilisées et remplacées par _
 %
 
-regle([bonjour,1],[
-      	[1, X, 0 , Reponse ]], Question):-
+% règles diverses (motcle[#bonjour, #fin])
+%
+% Bonjour          OK
+% Fin              OK
+
+regle([bonjour,_],[
+      	[1, X, _ , Reponse ]], Question):-
             salutation(bonjour,Reponse).
 
-regle([fin,1],[
-      	[1, X, 0 , Reponse ]], Question):-
+regle([fin,_],[
+      	[1, X, _ , Reponse ]], Question):-
             salutation(fin,Reponse).
 
-% règle appelée quand aucun mot clé n'est reconnu
-regle([notfound,1],[
-            [1, [_], 0, Reponse ]] , Question):-
+salutation(bonjour, [['bonjour a vous']]).
+salutation(fin, [['au revoir']]).
+
+% règle appelée quand aucun mot clé n'est reconnu (motcle[#notfound])
+
+regle([notfound,_],[
+            [1, [_], _, Reponse ]] , Question):-
                notfound(X,Reponse).
 
 notfound(X,[
@@ -22,6 +37,3 @@ notfound(X,[
       [ '...' ],
       [ 'pred. notfound 1 activated']          %debug: affiche réponse si pas de motclé trouvé
   ]).
-
-salutation(bonjour, [['bonjour a vous']]).
-salutation(fin, [['au revoir']]).

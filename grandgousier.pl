@@ -58,6 +58,7 @@ trouver_motcle([H|T],R):-
 %     in: liste Liste de mots-clé avec leurs poids}
 %     out: liste triée ListeTriee par poids du plus grand au plus petit
 %
+
 trier_motcle(Liste,ListeTriee):-
     sort(2,@>=,Liste,ListeTriee).
 

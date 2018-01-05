@@ -61,8 +61,8 @@ remplace(vni,vin).
 
 % Mots-cle:
 % 1 seul motclef(mot, poids) par mot à reconnaitre
-mclef(bonjour,1).
-mclef(fin,1).
+mclef(bonjour,2).
+mclef(fin,2).
 mclef(bouche,10).
 mclef(nez,10).
 mclef(region,9).
