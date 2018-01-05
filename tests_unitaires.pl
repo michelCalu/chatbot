@@ -2,6 +2,8 @@ test_programme(L):-
       findall(Question, incorrect(Question),L).
 
 incorrect(Q):-
+      nb_setval(vin_memo, vin_prop(empty,[])),
+      nb_setval(liste_memo, []),
       question_valide(Q),
       produire_reponse(Q, Reponse),
       not(rep_valide(Reponse)).
