@@ -12,10 +12,7 @@
 
 % questions région  (motcle[#appellation, #region, #ou, #origine])
 %
-% Quelle est l’appellation du [vin] ?           OK
-% De quelle région provient le [vin] ?          OK
-% D’où provient le [vin] ?                      OK
-% De quelle origine est le [vin] ?              OK
+% Avez-vous des vins de la région [région] ?           OK
 
 regle([region,_],[
         	[1, [_],_ , Reponse ]], Question):-

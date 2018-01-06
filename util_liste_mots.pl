@@ -86,7 +86,7 @@ mclef(entre,10).
 mclef(moins,8).
 mclef(plus,8).
 mclef(cher,9).
-mclef(plat,8).
+mclef(plat,9).
 mclef(accompagner,8).
 mclef(autre,6).
 mclef(davantage,5).

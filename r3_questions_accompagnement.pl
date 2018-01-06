@@ -43,4 +43,4 @@ regle([plat,_],[
 regle([plat,_],[
                 [1, [_],_ , Reponse ]], Question):-
                       not(get_vin(Question, _)),
-                      Reponse = [['je suis confus, je ne trouve pas de vin correspondant']].
+                      Reponse = [['je suis confus, je ne trouve pas de plat correspondant']].
