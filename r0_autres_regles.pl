@@ -32,8 +32,4 @@ regle([notfound,_],[
             [1, [_], _, Reponse ]] , Question):-
                notfound(X,Reponse).
 
-notfound(X,[
-      [ 'pas reconnu de mot cle' ],
-      [ '...' ],
-      [ 'pred. notfound 1 activated']          %debug: affiche réponse si pas de motclé trouvé
-  ]).
+notfound(X,[[ 'je n\'ai pas compris la question' ]]).

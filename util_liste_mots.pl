@@ -88,8 +88,8 @@ mclef(plus,8).
 mclef(cher,9).
 mclef(plat,9).
 mclef(accompagner,8).
-mclef(autre,6).
-mclef(davantage,5).
+mclef(autre,10).
+mclef(davantage,10).
 
 /***********************************************/
 % identifie une sous liste dans une liste

@@ -31,7 +31,8 @@ produire_reponse(Q,Reponse) :-
          trouver_motcle(Q_Simplifiee,MotsCle),
          trier_motcle(MotsCle,TriMotsCle),
          !,
-         print('DEBUG mots trouves:'),writeln(TriMotsCle),        % debug
+         %print('DEBUG question:'),writeln(Q_Simplifiee),
+         %print('DEBUG mots trouves:'),writeln(TriMotsCle),
          lister_regles(TriMotsCle, Q, Reponse).
 
 
@@ -70,8 +71,8 @@ trier_motcle(Liste,ListeTriee):-
 %                 - match(Question, Pattern) et conditions de la règle réussi(ssen)t
 
 lister_regles([[M,_]|Rest],  Question, Reponse):-
-       regle([M,_],[[ID,Pattern,Count,Reponse]], Question),
-       print('DEBUG: regle utilisee:'),writeln([[M],[Pattern]]), !.
+       regle([M,_],[[ID,Pattern,Count,Reponse]], Question).
+       %print('DEBUG: regle utilisee:'),writeln([[M],[Pattern]]), !, nl.
 
 lister_regles([[M,_]|Rest],  Question, Reponse):-
        not(regle([M,_],[[ID,Pattern,Count,Reponse]], Question)),
