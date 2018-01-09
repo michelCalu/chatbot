@@ -124,8 +124,8 @@ question_valide([auriez,vous,un,bordeaux]).
 question_invalide([quels,vins,de,tttt,avez,vous ]).
 
 % questions règle prix->vins
-question_valide([auriez,vous,des,vins,entre,10,et,20 ]).
-question_valide([auriez,vous,des,vins,entre,20,et,10 ]).
+question_valide([auriez,vous,des,vins,entre,10,et,20]).
+question_valide([auriez,vous,des,vins,entre,20,et,10]).
 question_valide([quel,est,votre,vin,le,plus,cher]).
 question_valide([quel,est,votre,vin,le,moins,cher]).
 question_valide([auriez,vous,des,vins,a,moins,de,20]).
