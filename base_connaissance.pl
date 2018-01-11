@@ -390,5 +390,5 @@ bouche(ventoux,[['en bouche, les saveurs sont fruitees, epicees et'],['florales.
 %     in: input from learning/2
 %     out: returns learned predicate
 %
-bouche(lirac,Userinput):- bouche_dyn(Vin,Userinput).
-bouche(hermitage,Userinput):- bouche_dyn(Vin,Userinput).
+bouche(lirac,Userinput):- bouche_dyn(lirac,Userinput).
+bouche(hermitage,Userinput):- bouche_dyn(hermitage,Userinput).

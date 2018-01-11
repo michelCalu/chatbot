@@ -48,7 +48,7 @@ regle([davantage,_],[
                       nom(ID_Vin, Nom_Vin),
                       get_propriete_non_citee([]),
                       reset_vin_memo(),
-                      Reponse = [['vous savez tout au sujet du'|Nom_Vin]].
+                      Reponse = [['vous savez tout au sujet du'|Nom_Vin]],!.
 
 % cas où il n'y a pas de vin en mémoire
 regle([davantage,_],[
